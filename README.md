@@ -22,7 +22,7 @@ municipales de 1996 hasta 2021.
 │   │   └── asuncion/
 │   └── cordillera/
 │       ├── altos/
-│       └── san_bernardino/
+│       └── sanbernardino/
 │
 ├── manual/
 │   └── manual_estudiantes.Rmd     ← Manual completo del proyecto (compilar a HTML)
@@ -91,7 +91,7 @@ irregulares (ej. 1998, 2002) correspondientes a municipios de nueva creación.
 | Investigador principal | Camilo | San Bernardino, Altos |
 | Estudiante | Alejandra | Capiatá, Areguá, Villeta, Fernando de la Mora |
 | Estudiante | Samuel | San Lorenzo, Luque, Ypané, Guarambaré |
-| Estudiante | Isabel | Mariano Roque Alonso, Asunción, Limpio, J.A. Saldívar |
+| Estudiante | Isabel | Mariano Roque Alonso, Asunción, Limpio, José Augusto Saldívar |
 | Estudiante | Joel | Lambáre, Villa Elisa, San Antonio, Ñemby |
 | Estudiante | Daniel | Itá, Ypacaraí, Itauguá, Nueva Italia |
 | Asistente | Leti | Validación y revisión cruzada |

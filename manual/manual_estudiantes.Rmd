@@ -97,7 +97,7 @@ Todas las DJBs se encuentran en el portal oficial de la Contraloría:
 | Investigador principal | Camilo | San Bernardino, Altos (Cordillera) |
 | Estudiante | Alejandra | Capiatá, Areguá, Villeta, Fernando de la Mora |
 | Estudiante | Samuel | San Lorenzo, Luque, Ypané, Guarambaré |
-| Estudiante | Isabel | Mariano Roque Alonso, Asunción, Limpio, J.A. Saldívar |
+| Estudiante | Isabel | Mariano Roque Alonso, Asunción, Limpio, José Augusto Saldívar |
 | Estudiante | Joel | Lambáre, Villa Elisa, San Antonio, Ñemby |
 | Estudiante | Daniel | Itá, Ypacaraí, Itauguá, Nueva Italia |
 | Asistente de investigación | Leti | Validación y revisión cruzada |
@@ -162,7 +162,7 @@ datos/
 │   └── ...
 ├── cordillera/
 │   ├── altos/
-│   └── san_bernardino/
+│   └── sanbernardino/
 └── asuncion/
     └── asuncion/
 ```
@@ -172,6 +172,39 @@ datos/
 # Convención de nombres de archivos
 
 Seguir esta convención **estrictamente** es fundamental para que el proyecto sea ordenado.
+
+## Nombres de carpetas de distritos
+
+Cuando necesitás crear una nueva carpeta de distrito en `datos/` (porque el proyecto se
+expande a nuevas zonas), el nombre de la carpeta debe coincidir **exactamente** con el
+valor de la columna `nombre_distrito_estandarizado` del archivo de referencia:
+
+> **`manual/nombres_estandarizados_distritos_PRY.xlsx`**
+
+Este archivo tiene 263 distritos de todo Paraguay. La primera columna,
+`nombre_distrito_estandarizado`, es el nombre oficial a usar en el repositorio:
+todo en **minúsculas**, **sin espacios**, **sin tildes**, **sin guiones**, **sin caracteres especiales**.
+
+**Ejemplos de cómo se ven:**
+
+| Nombre legible | `nombre_distrito_estandarizado` |
+|---|---|
+| San Bernardino | `sanbernardino` |
+| Fernando de la Mora | `fernandodelamora` |
+| Mariano Roque Alonso | `marianoroquealonso` |
+| José Augusto Saldívar | `joseaugustosaldivar` |
+| Arroyos y Esteros | `arroyosyesteros` |
+| Ñemby | `nemby` |
+
+<div class="importante">
+**Nunca inventes el nombre de una carpeta de memoria.** Siempre consultá el archivo
+`nombres_estandarizados_distritos_PRY.xlsx` para verificar el nombre correcto.
+Si el distrito no aparece en el archivo, avisale a Camilo antes de crear la carpeta.
+</div>
+
+El archivo también tiene las columnas `nombre_dpto_estandarizado` (para el nombre de la
+carpeta del departamento) y `nombre_distrito_alternativo` (el nombre legible, solo para
+tu referencia — **no** lo uses como nombre de carpeta).
 
 ## Archivos en el Drive (tu carpeta de trabajo)
 

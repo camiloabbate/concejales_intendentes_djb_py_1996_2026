@@ -1411,7 +1411,6 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; }
 
 
 
-<link rel="stylesheet" href="estilos.css" type="text/css" />
 
 
 
@@ -1694,7 +1693,7 @@ trabajo</h2>
 <tr class="even">
 <td>Estudiante</td>
 <td>Isabel</td>
-<td>Mariano Roque Alonso, Asunción, Limpio, J.A. Saldívar</td>
+<td>Mariano Roque Alonso, Asunción, Limpio, José Augusto Saldívar</td>
 </tr>
 <tr class="odd">
 <td>Estudiante</td>
@@ -1777,7 +1776,7 @@ de los datos, organizada por departamento y distrito. Los PDFs
 │   └── ...
 ├── cordillera/
 │   ├── altos/
-│   └── san_bernardino/
+│   └── sanbernardino/
 └── asuncion/
     └── asuncion/</code></pre>
 <hr />
@@ -1788,8 +1787,72 @@ de los datos, organizada por departamento y distrito. Los PDFs
 de archivos</h1>
 <p>Seguir esta convención <strong>estrictamente</strong> es fundamental
 para que el proyecto sea ordenado.</p>
-<div id="archivos-en-el-drive-tu-carpeta-de-trabajo" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Archivos en el Drive
+<div id="nombres-de-carpetas-de-distritos" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Nombres de carpetas
+de distritos</h2>
+<p>Cuando necesitás crear una nueva carpeta de distrito en
+<code>datos/</code> (porque el proyecto se expande a nuevas zonas), el
+nombre de la carpeta debe coincidir <strong>exactamente</strong> con el
+valor de la columna <code>nombre_distrito_estandarizado</code> del
+archivo de referencia:</p>
+<blockquote>
+<p><strong><code>manual/nombres_estandarizados_distritos_PRY.xlsx</code></strong></p>
+</blockquote>
+<p>Este archivo tiene 263 distritos de todo Paraguay. La primera
+columna, <code>nombre_distrito_estandarizado</code>, es el nombre
+oficial a usar en el repositorio: todo en <strong>minúsculas</strong>,
+<strong>sin espacios</strong>, <strong>sin tildes</strong>, <strong>sin
+guiones</strong>, <strong>sin caracteres especiales</strong>.</p>
+<p><strong>Ejemplos de cómo se ven:</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>Nombre legible</th>
+<th><code>nombre_distrito_estandarizado</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>San Bernardino</td>
+<td><code>sanbernardino</code></td>
+</tr>
+<tr class="even">
+<td>Fernando de la Mora</td>
+<td><code>fernandodelamora</code></td>
+</tr>
+<tr class="odd">
+<td>Mariano Roque Alonso</td>
+<td><code>marianoroquealonso</code></td>
+</tr>
+<tr class="even">
+<td>José Augusto Saldívar</td>
+<td><code>joseaugustosaldivar</code></td>
+</tr>
+<tr class="odd">
+<td>Arroyos y Esteros</td>
+<td><code>arroyosyesteros</code></td>
+</tr>
+<tr class="even">
+<td>Ñemby</td>
+<td><code>nemby</code></td>
+</tr>
+</tbody>
+</table>
+<div class="importante">
+<p><strong>Nunca inventes el nombre de una carpeta de memoria.</strong>
+Siempre consultá el archivo
+<code>nombres_estandarizados_distritos_PRY.xlsx</code> para verificar el
+nombre correcto. Si el distrito no aparece en el archivo, avisale a
+Camilo antes de crear la carpeta.</p>
+</div>
+<p>El archivo también tiene las columnas
+<code>nombre_dpto_estandarizado</code> (para el nombre de la carpeta del
+departamento) y <code>nombre_distrito_alternativo</code> (el nombre
+legible, solo para tu referencia — <strong>no</strong> lo uses como
+nombre de carpeta).</p>
+</div>
+<div id="archivos-en-el-drive-tu-carpeta-de-trabajo" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Archivos en el Drive
 (tu carpeta de trabajo)</h2>
 <p>El nombre del archivo sigue este formato:</p>
 <pre><code>[cedula]_[NOMBRE COMPLETO]_[año]_[tipo].xlsx</code></pre>
@@ -1848,8 +1911,8 @@ mismo año, agregá una letra:
 <code>1234567_JUAN PEREZ_2001b_entrada.xlsx</code>.</p>
 </div>
 </div>
-<div id="archivos-en-github-repositorio-final" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Archivos en GitHub
+<div id="archivos-en-github-repositorio-final" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Archivos en GitHub
 (repositorio final)</h2>
 <p>En GitHub los archivos se nombran solo con año y tipo, porque ya
 están dentro de la carpeta del distrito:</p>
