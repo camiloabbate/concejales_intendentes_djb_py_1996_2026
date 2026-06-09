@@ -1,1 +1,0 @@
-Aqui simplemente escribo observaciones importantes realizadas por Camilo en su proceso de generacion de datos.

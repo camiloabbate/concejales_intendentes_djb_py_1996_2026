@@ -2,3 +2,14 @@
 .Rhistory
 .RData
 .Ruserdata
+
+# Archivos temporales de Office
+~$*.xlsx
+~$*.docx
+*.tmp
+
+# PDFs no van en GitHub (van en el Drive compartido)
+*.pdf
+
+# Archivos grandes de datos R procesados
+*.RData

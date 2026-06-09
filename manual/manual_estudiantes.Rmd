@@ -1,0 +1,663 @@
+---
+title: "Manual de trabajo — Declaraciones Juradas de Bienes (DJB)"
+subtitle: "Intendentes y Concejales electos de Paraguay, 1996–2026"
+author: "Proyecto de investigación — uso interno del equipo"
+date: "Actualizado: `r format(Sys.Date(), '%d de %B de %Y')`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+      smooth_scroll: true
+    theme: flatly
+    highlight: tango
+    number_sections: true
+    self_contained: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{css, echo=FALSE}
+/* Cajas de aviso */
+.aviso {
+  background-color: #fff3cd;
+  border-left: 5px solid #ffc107;
+  padding: 12px 16px;
+  margin: 16px 0;
+  border-radius: 0 4px 4px 0;
+}
+.importante {
+  background-color: #f8d7da;
+  border-left: 5px solid #dc3545;
+  padding: 12px 16px;
+  margin: 16px 0;
+  border-radius: 0 4px 4px 0;
+}
+.ok {
+  background-color: #d1e7dd;
+  border-left: 5px solid #198754;
+  padding: 12px 16px;
+  margin: 16px 0;
+  border-radius: 0 4px 4px 0;
+}
+.info {
+  background-color: #cff4fc;
+  border-left: 5px solid #0dcaf0;
+  padding: 12px 16px;
+  margin: 16px 0;
+  border-radius: 0 4px 4px 0;
+}
+code {
+  background-color: #f0f0f0;
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-size: 0.92em;
+}
+pre code {
+  background-color: transparent;
+  padding: 0;
+}
+h1, h2, h3 { color: #2c3e50; }
+table { font-size: 0.95em; }
+```
+
+---
+
+# Introducción
+
+Este manual explica paso a paso cómo trabajar en el proyecto de recopilación de
+Declaraciones Juradas de Bienes (DJB) de intendentes y concejales electos en Paraguay
+durante el período democrático (1996–2026).
+
+## ¿Qué es una DJB?
+
+Una Declaración Jurada de Bienes es un documento legal que los funcionarios públicos
+electos deben presentar ante la Contraloría General de la República al **asumir** y al
+**dejar** su cargo. Algunas personas también presentan **actualizaciones** intermedias
+durante su mandato.
+
+## Objetivo del proyecto
+
+Construir una base de datos tabular y estandarizada con todas las DJBs disponibles de
+intendentes y concejales electos, para todas las elecciones municipales desde 1996 hasta 2021.
+
+## Fuente de datos
+
+Todas las DJBs se encuentran en el portal oficial de la Contraloría:
+
+> **https://portaldjbr.contraloria.gov.py/portaldjbr/**
+
+## Equipo de trabajo
+
+| Rol | Nombre | Distritos asignados |
+|---|---|---|
+| Investigador principal | Camilo | San Bernardino, Altos (Cordillera) |
+| Estudiante | Alejandra | Capiatá, Areguá, Villeta, Fernando de la Mora |
+| Estudiante | Samuel | San Lorenzo, Luque, Ypané, Guarambaré |
+| Estudiante | Isabel | Mariano Roque Alonso, Asunción, Limpio, J.A. Saldívar |
+| Estudiante | Joel | Lambáre, Villa Elisa, San Antonio, Ñemby |
+| Estudiante | Daniel | Itá, Ypacaraí, Itauguá, Nueva Italia |
+| Asistente de investigación | Leti | Validación y revisión cruzada |
+| Asistente de investigación | Fabri | Validación y revisión cruzada |
+
+---
+
+# Estructura del proyecto
+
+El proyecto usa **dos espacios de trabajo** con roles distintos:
+
+## Google Drive — área de trabajo
+
+El Drive es donde los estudiantes trabajan día a día: descargan PDFs, llenan las plantillas
+Excel y guardan sus archivos en progreso.
+
+```
+datos_concejales_intendentes_DJB/
+│
+├── PLANTILLAS/               ← Las 3 plantillas Excel. SOLO COPIAR, nunca editar.
+│   ├── plantilla1_UNO.xlsx
+│   ├── plantilla2_DOS.xlsx
+│   └── plantilla3_TRES.xlsx
+│
+├── INSTRUCCIONES/            ← Instrucciones detalladas por plantilla
+│   ├── Instrucciones_plantilla_1_UNO.docx
+│   ├── Instrucciones_plantilla_2_DOS.docx
+│   └── Instrucciones_plantilla_3_TRES.docx
+│
+├── trabajo_estudiantes/      ← Cada uno trabaja en su subcarpeta
+│   ├── alejandra/
+│   ├── samuel/
+│   ├── isabel/
+│   ├── joel/
+│   └── daniel/
+│
+└── archivo_historico/        ← Trabajo previo archivado. No tocar.
+```
+
+<div class="aviso">
+**Sobre las plantillas:** Nunca modifiques los archivos dentro de `PLANTILLAS/`.
+Siempre hacé una copia y trabajá sobre la copia.
+</div>
+
+## GitHub — repositorio final
+
+GitHub es donde se guarda la versión **final y limpia** de los datos, organizada por
+departamento y distrito. Los PDFs **no** van en GitHub (solo van en el Drive).
+
+```
+datos/
+├── central/
+│   ├── capiata/
+│   │   ├── intendentes/
+│   │   │   ├── 1996_entrada.xlsx
+│   │   │   ├── 1996_salida.xlsx
+│   │   │   ├── 2001_entrada.xlsx
+│   │   │   └── ...
+│   │   └── concejales/
+│   │       └── ...
+│   ├── luque/
+│   └── ...
+├── cordillera/
+│   ├── altos/
+│   └── san_bernardino/
+└── asuncion/
+    └── asuncion/
+```
+
+---
+
+# Convención de nombres de archivos
+
+Seguir esta convención **estrictamente** es fundamental para que el proyecto sea ordenado.
+
+## Archivos en el Drive (tu carpeta de trabajo)
+
+El nombre del archivo sigue este formato:
+
+```
+[cedula]_[NOMBRE COMPLETO]_[año]_[tipo].xlsx
+```
+
+**Ejemplos:**
+
+```
+1234567_JUAN CARLOS PEREZ GARCIA_2015_entrada.xlsx
+1234567_JUAN CARLOS PEREZ GARCIA_2021_salida.xlsx
+1234567_JUAN CARLOS PEREZ GARCIA_2018_actualizacion.xlsx
+9876543_MARIA LOPEZ DE GOMEZ_2010_otros.xlsx
+```
+
+**Tipos de declaración:**
+
+| Sufijo | Cuándo usarlo |
+|---|---|
+| `_entrada` | DJB presentada al asumir el cargo |
+| `_salida` | DJB presentada al dejar el cargo |
+| `_actualizacion` | DJB intermedia presentada durante el mandato |
+| `_otros` | DJB de un cargo distinto (ej. diputado, secretario de Estado) |
+| `_sin_clasificar` | No podés determinar el tipo — consultá con Camilo antes de seguir |
+
+<div class="info">
+**Político con múltiples mandatos:** Si la misma persona fue elegida en 1996 y
+luego de nuevo en 2010, vas a tener archivos con distintos años:
+`1234567_JUAN PEREZ_1996_entrada.xlsx` y `1234567_JUAN PEREZ_2010_entrada.xlsx`.
+El año los distingue perfectamente.
+</div>
+
+<div class="aviso">
+**Caso muy raro:** Si hay dos DJBs del mismo tipo en el mismo año, agregá una letra:
+`1234567_JUAN PEREZ_2001a_entrada.xlsx`, `1234567_JUAN PEREZ_2001b_entrada.xlsx`.
+</div>
+
+## Archivos en GitHub (repositorio final)
+
+En GitHub los archivos se nombran solo con año y tipo, porque ya están dentro de la
+carpeta del distrito:
+
+```
+datos/central/capiata/intendentes/2015_entrada.xlsx
+datos/central/capiata/concejales/2015_entrada.xlsx
+```
+
+---
+
+# Elecciones municipales
+
+## Años de elecciones ordinarias
+
+Las elecciones municipales ordinarias en Paraguay ocurrieron en:
+
+| Año | Período de mandato |
+|---|---|
+| 1996 | 1996–2001 |
+| 2001 | 2001–2006 |
+| 2006 | 2006–2010 |
+| 2010 | 2010–2015 |
+| 2015 | 2015–2021 |
+| 2021 | 2021–2026 |
+
+## Elecciones complementarias
+
+Además de las elecciones ordinarias, hubo elecciones **complementarias** en años irregulares
+(por ejemplo 1998, 2002, 2004). Esto ocurre principalmente cuando se crea un nuevo municipio
+a partir de uno existente.
+
+<div class="info">
+Si encontrás una DJB de un año que no figura en la tabla de arriba (por ejemplo 1999 o 2003),
+no significa que está mal. Simplemente usá ese año en el nombre del archivo y anotalo en el
+registro de progreso bajo la columna "notas".
+</div>
+
+## DJBs faltantes
+
+Es normal que no todas las DJBs existan. Un político puede:
+
+- No haber presentado su DJB (incumplimiento legal, pero ocurre)
+- Haber presentado solo la de entrada y no la de salida
+- Solo tener la de salida disponible en el portal digital (las más viejas pueden no estar digitalizadas)
+
+Cuando una DJB no existe o no está disponible, **no dejés la carpeta vacía en el registro** —
+marcá explícitamente como `sin_DJB_disponible` en la hoja de progreso.
+
+---
+
+# Las tres plantillas Excel
+
+Las DJBs cambiaron de formato a lo largo de los años. Hay **tres versiones** distintas del
+formulario, y cada una tiene su propia plantilla Excel.
+
+## ¿Cómo identificar cuál plantilla usar?
+
+La forma más rápida es mirar los títulos de las secciones 4, 5, 6 y 7 del formulario:
+
+| | Plantilla UNO | Plantilla DOS | Plantilla TRES |
+|---|---|---|---|
+| **Sección 4** | `DETALLE DE INGRESOS` | `EGRESOS MENSUALES` | `EGRESOS MENSUALES` |
+| **Sección 5** | `DECLARACION JURADA` | `EGRESOS ANUALES` | `INGRESOS MENSUALES` |
+| **Sección 6** | *(no existe)* | `INGRESOS MENSUALES` | `DECLARACION JURADA` |
+| **Sección 7** | *(no existe)* | `INGRESOS ANUALES` | *(no existe)* |
+| **Sub-encabezados del activo (3.1)** | Sin números | **Con números** (3_1_1, 3_1_2...) | Sin números |
+
+### Plantilla UNO — el formulario más antiguo
+
+Reconocida porque:
+
+- La sección 4 se llama **"DETALLE DE INGRESOS"**
+- La sección 5 se llama **"DECLARACION JURADA"**
+- Los sub-encabezados dentro de "3.1 ACTIVO" **no tienen números**
+  (por ejemplo: "EFECTIVO Y DEPOSITOS", "CUENTAS A COBRAR", etc.)
+
+<div class="info">
+Aunque los sub-encabezados del PDF no tengan números, en el Excel SÍ tienen números
+por convención. Esto es normal.
+</div>
+
+### Plantilla DOS — el formulario intermedio
+
+Reconocida porque:
+
+- La sección 4 se llama **"EGRESOS MENSUALES"**
+- La sección 5 se llama **"EGRESOS ANUALES"**
+- La sección 6 se llama **"INGRESOS MENSUALES"**
+- La sección 7 se llama **"INGRESOS ANUALES"**
+- Los sub-encabezados dentro de "3.1 ACTIVO" **sí tienen números**
+  (por ejemplo: 3.1.1, 3.1.2, 3.1.3...)
+
+### Plantilla TRES — el formulario más reciente
+
+Reconocida porque:
+
+- La sección 4 se llama **"EGRESOS MENSUALES"**
+- La sección 5 se llama **"INGRESOS MENSUALES"**
+- La sección 6 se llama **"DECLARACION JURADA"**
+- Los sub-encabezados dentro de "3.1 ACTIVO" **no tienen números**
+  (similar a la UNO, pero el resto de secciones es distinto)
+
+<div class="aviso">
+**Regla práctica:** Si ves secciones de egresos anuales e ingresos anuales (es decir 7
+secciones en total), es la DOS. Si ves egresos pero no tiene "egresos anuales" separados,
+es la TRES. Si no ves egresos para nada, es la UNO (la más vieja).
+</div>
+
+## Separadores de miles
+
+<div class="importante">
+**Atención:** Usá **comas** como separadores de miles, no puntos.
+
+- ❌ Incorrecto: `600.000`
+- ✅ Correcto: `600,000`
+
+Esto aplica a todos los valores numéricos en las tres plantillas.
+</div>
+
+---
+
+# Flujo de trabajo paso a paso
+
+## Resumen del flujo
+
+```
+Portal Contraloría → Descargás el PDF → Identificás la plantilla →
+Copiás el Excel → Llenás el Excel → Guardás en tu carpeta del Drive →
+Actualizás el registro de progreso → Subís a GitHub (pull → commit → push)
+```
+
+## Paso 1 — Buscar la DJB en el portal
+
+1. Abrí el portal: **https://portaldjbr.contraloria.gov.py/portaldjbr/**
+2. Buscá por nombre del político o por cédula de identidad
+3. Fijate en todos los resultados — una persona puede tener múltiples DJBs de distintos cargos
+4. Descargá los PDFs relevantes a tu computadora
+
+<div class="info">
+Si el político tuvo cargos en varios niveles de gobierno (municipal, diputado, etc.),
+vas a ver DJBs de todos esos cargos. Procesá todos — usá el tipo `_otros` para los
+que no son del cargo municipal que te corresponde.
+</div>
+
+## Paso 2 — Identificar la plantilla correcta
+
+Abrí el PDF y mirá los títulos de las secciones 4 y 5 (como se explicó en la sección anterior).
+Si no podés determinar cuál plantilla usar, consultá con Camilo antes de seguir.
+
+## Paso 3 — Copiar la plantilla
+
+1. Abrí el Google Drive en tu carpeta `PLANTILLAS/`
+2. Copiá el archivo `plantilla1_UNO.xlsx` (o DOS o TRES según corresponda)
+3. Pegalo en tu carpeta personal: `trabajo_estudiantes/[tu_nombre]/`
+4. Renombralo según la convención: `[cedula]_[NOMBRE]_[año]_[tipo].xlsx`
+
+<div class="importante">
+**Nunca trabajes directamente sobre el archivo en `PLANTILLAS/`.**
+Siempre copiar → pegar → renombrar → recién ahí empezar a llenar.
+</div>
+
+## Paso 4 — Llenar el Excel
+
+Seguí las instrucciones detalladas del documento correspondiente en la carpeta
+`INSTRUCCIONES/` del Drive. Cada plantilla tiene su propio documento con ejemplos
+visuales de cada caso especial.
+
+**Consideraciones generales para todas las plantillas:**
+
+- Usá comas como separadores de miles (`600,000` no `600.000`)
+- Si un campo está en blanco en el PDF, dejalo en blanco en el Excel (no escribas "N/A" ni "—")
+- El campo `file_name` debe tener el nombre del PDF con extensión: `1234567_JUAN PEREZ.pdf`
+- Las fechas van en formato `DD/MM/AAAA` (día/mes/año)
+- Para la fecha: si no aparece en el cuerpo del formulario, buscá un **sello o timbre**
+  en la página — generalmente está ahí
+
+## Paso 5 — Guardar y actualizar el registro
+
+1. Guardá tu Excel en tu carpeta del Drive (`trabajo_estudiantes/[tu_nombre]/`)
+2. Abrí la hoja de registro de progreso (ver Sección 8) y marcá el estado actualizado
+
+## Paso 6 — Subir a GitHub
+
+Ver Sección 7 para el tutorial de git completo.
+
+---
+
+# Tutorial de git para este proyecto
+
+<div class="info">
+Git puede ser confuso al principio. Leé esta sección con calma. Los comandos son siempre
+los mismos — con el tiempo se vuelven automáticos.
+</div>
+
+## Los tres comandos que vas a usar siempre
+
+```bash
+git pull       # Bajar los cambios que otros hicieron
+git commit     # Guardar tus cambios con un mensaje
+git push       # Subir tus cambios al repositorio
+```
+
+**Regla de oro:** Siempre empezá con `git pull` antes de empezar a trabajar,
+y siempre terminá con `git push` cuando terminás.
+
+## Flujo de trabajo diario — paso a paso
+
+### Al comenzar a trabajar
+
+Abrí la terminal (o la consola de RStudio) y ejecutá:
+
+```bash
+git pull
+```
+
+Esto baja los últimos cambios que otros miembros del equipo hicieron.
+**Hacé esto siempre antes de empezar**, para no trabajar sobre una versión desactualizada.
+
+### Al terminar de trabajar
+
+Cuando terminaste de llenar un Excel y lo querés guardar en el repositorio:
+
+**1. Copiá el Excel terminado al lugar correcto en el repositorio:**
+
+```
+datos/central/capiata/intendentes/2015_entrada.xlsx
+```
+
+**2. Verificá qué archivos cambiaste:**
+
+```bash
+git status
+```
+
+Vas a ver algo así:
+
+```
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be included in commit)
+
+    modified:   registro_progreso/progreso.xlsx
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+    datos/central/capiata/intendentes/2015_entrada.xlsx
+```
+
+**3. Agregá los archivos que querés guardar:**
+
+```bash
+git add datos/central/capiata/intendentes/2015_entrada.xlsx
+git add registro_progreso/progreso.xlsx
+```
+
+O si querés agregar todo de una vez:
+
+```bash
+git add .
+```
+
+<div class="aviso">
+**Cuidado con `git add .`** — agrega todo lo que haya cambiado. Verificá con `git status`
+que no estás por subir archivos que no querés (como PDFs grandes o archivos temporales).
+</div>
+
+**4. Hacé un commit con un mensaje descriptivo:**
+
+```bash
+git commit -m "agrego DJB 2015 entrada intendente Capiata"
+```
+
+El mensaje debe ser corto y descriptivo. Ejemplos de buenos mensajes:
+
+```bash
+git commit -m "agrego DJBs 2015 entrada y salida concejales Luque"
+git commit -m "corrijo valor inmueble DJB 2010 entrada intendente Villeta"
+git commit -m "agrego DJBs 1996 y 2001 intendente San Lorenzo"
+```
+
+**5. Subí los cambios:**
+
+```bash
+git push
+```
+
+### Resumen del flujo completo
+
+```bash
+# Al comenzar:
+git pull
+
+# ... trabajás, copiás el Excel al lugar correcto ...
+
+# Al terminar:
+git status
+git add [archivos]
+git commit -m "descripción de lo que hiciste"
+git push
+```
+
+## Errores comunes y cómo solucionarlos
+
+### "There is no tracking information for the current branch"
+
+Significa que nunca hiciste push desde esta computadora. Ejecutá:
+
+```bash
+git push --set-upstream origin main
+```
+
+### "Please commit your changes or stash them before you merge"
+
+Tenés cambios sin guardar y alguien más también modificó el mismo archivo.
+Primero hacé commit de tus cambios y luego pull:
+
+```bash
+git add .
+git commit -m "guardando cambios antes de actualizar"
+git pull
+git push
+```
+
+### "CONFLICT" al hacer pull
+
+Dos personas modificaron el mismo archivo. Contactá a Camilo directamente — no intentes
+resolver un conflicto de git por tu cuenta.
+
+### Subí un archivo por error
+
+Si subiste algo que no debías (un PDF grande, un archivo temporal), avisale a Camilo
+inmediatamente. No intentes "arreglarlo" solo porque es fácil empeorar la situación.
+
+---
+
+# Registro de progreso
+
+La hoja de registro (`registro_progreso/progreso.xlsx`) es el mapa del estado del proyecto.
+**Actualizala cada vez que terminás un Excel.**
+
+## Columnas de la hoja de registro
+
+| Columna | Descripción |
+|---|---|
+| `departamento` | Central, Cordillera, Asunción, etc. |
+| `distrito` | Nombre del municipio |
+| `año_eleccion` | 1996, 2001, 2006, 2010, 2015, 2021 (o complementaria) |
+| `tipo_eleccion` | `ordinaria` o `complementaria` |
+| `cargo` | `intendente` o `concejal` |
+| `djb_entrada` | `completo`, `en_progreso`, `sin_DJB_disponible`, `pendiente` |
+| `djb_salida` | ídem |
+| `djb_actualizacion` | ídem (o `no_aplica` si no hubo) |
+| `responsable` | Nombre del estudiante que trabajó esto |
+| `notas` | Cualquier observación relevante |
+
+## Estados posibles
+
+| Estado | Significado |
+|---|---|
+| `pendiente` | Nadie empezó a trabajar esto todavía |
+| `en_progreso` | Alguien lo está trabajando actualmente |
+| `completo` | El Excel está terminado y subido a GitHub |
+| `sin_DJB_disponible` | Se buscó y la DJB no existe o no está digitalizada |
+
+---
+
+# Casos especiales y dudas frecuentes
+
+## El político tiene DJBs de varios cargos
+
+Es normal. Procesá todas las que correspondan al cargo municipal.
+Las de otros cargos (diputado, senador, etc.) guardá en el Drive con el sufijo `_otros`.
+Esas no se suben a GitHub por ahora.
+
+## No aparece el nombre del Escribano Público
+
+En la hoja de declaración jurada hay un campo para el nombre del Escribano Público
+(el funcionario que certifica la firma). Si no encontrás nada escrito, mirá si hay
+un **sello** cerca. Ese sello generalmente tiene el nombre.
+
+Si tampoco hay sello, dejá el campo en blanco. No inventes información.
+
+## La fecha no está en el formulario
+
+Mirá si hay un sello o timbre en la página — generalmente tiene fecha.
+Si hay varios sellos con fechas distintas y no coinciden, anotalo en la columna `notas`
+del registro y consultá con Camilo.
+
+Si no hay absolutamente ninguna fecha en ningún lado, dejá el campo en blanco.
+
+## El formulario está parcialmente en blanco
+
+Si el político dejó campos en blanco en el PDF, dejá esos campos en blanco en el Excel
+también. No escribas "0", "N/A" ni ningún otro placeholder.
+
+## No sé si es entrada o salida
+
+Mirá el año del formulario en relación al año electoral del distrito:
+
+- Si el año coincide con un año de elección (1996, 2001, 2006, 2010, 2015, 2021) → probablemente `entrada`
+- Si el año es el siguiente al final del mandato → probablemente `salida`
+- Si no podés determinarlo → usá `sin_clasificar` y consultá con Camilo
+
+## El PDF es ilegible o está muy deteriorado
+
+Anotá el problema en la hoja de progreso bajo `notas` y marcá el estado como `en_progreso`.
+Consultá con Camilo antes de dejarlo como `sin_DJB_disponible`.
+
+---
+
+# Glosario
+
+| Término | Significado |
+|---|---|
+| **DJB** | Declaración Jurada de Bienes |
+| **Intendente** | Equivalente al alcalde o jefe comunal del municipio |
+| **Concejal** | Miembro del concejo municipal (cuerpo legislativo local) |
+| **Contraloría** | Contraloría General de la República del Paraguay |
+| **Mandato** | Período de gobierno para el que fue electo el político |
+| **Entrada** | DJB presentada al asumir el cargo |
+| **Salida** | DJB presentada al dejar el cargo |
+| **Actualización** | DJB presentada voluntariamente durante el mandato |
+| **Pull** | Bajar cambios del repositorio remoto (GitHub) |
+| **Commit** | Guardar cambios localmente con un mensaje |
+| **Push** | Subir cambios al repositorio remoto (GitHub) |
+| **Merge conflict** | Conflicto cuando dos personas editaron el mismo archivo |
+
+---
+
+# Contacto y soporte
+
+Si tenés dudas que no están cubiertas en este manual:
+
+1. Primero revisá la sección de **Casos especiales** (Sección 9)
+2. Si no encontrás la respuesta, abrí un **Issue** en el repositorio de GitHub con el título
+   descriptivo del problema
+3. Como último recurso, contactá directamente a Camilo
+
+<div class="ok">
+**Recordá:** No hay preguntas tontas. Es mucho mejor preguntar y hacerlo bien que adivinar
+y generar datos incorrectos. La calidad de los datos depende de todos.
+</div>
+
+---
+
+*Este manual se actualiza a medida que el proyecto avanza.
+Última revisión: `r format(Sys.Date(), '%d/%m/%Y')`.*
