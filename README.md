@@ -12,7 +12,7 @@ municipales de 1996 hasta 2021.
 
 ```
 .
-├── datos/                         ← Datos finales limpios, organizados por distrito
+├── 00_datos/                      ← Datos finales limpios, organizados por distrito
 │   ├── central/
 │   │   ├── capiata/
 │   │   │   ├── intendentes/       ← Archivos: 1996_entrada.xlsx, 2001_salida.xlsx, etc.
@@ -20,37 +20,34 @@ municipales de 1996 hasta 2021.
 │   │   └── [resto de distritos de Central]
 │   ├── asuncion/
 │   │   └── asuncion/
-│   └── cordillera/
-│       ├── altos/
-│       └── sanbernardino/
+│   ├── cordillera/
+│   │   ├── altos/
+│   │   └── sanbernardino/
+│   └── full_intendentes_margen_2001_2021.RData
 │
 ├── manual/
 │   └── manual_estudiantes.Rmd     ← Manual completo del proyecto (compilar a HTML)
 │
-├── muestra/                       ← Templates Excel y documentos de referencia
-│   ├── plantilla1_UNO.xlsx
-│   ├── plantilla2_DOS.xlsx
-│   ├── plantilla3_TRES.xlsx
-│   └── Guidelines template *.docx
-│
 ├── registro_progreso/
-│   └── progreso.xlsx              ← Hoja de seguimiento del estado por distrito/año/cargo
+│   ├── panel_djb_central_asuncion.html  ← Panel interactivo de trabajo (abrir con doble click)
+│   ├── panel_djb_data.js                ← Datos del panel (generado, no editar)
+│   ├── avances/                         ← CSVs de avance exportados desde el panel
+│   └── progreso.xlsx                    ← Hoja de seguimiento del estado por distrito/año/cargo
 │
-├── manuales_e_infos_criticas/
-│   └── nombres_estandarizados_distritos_PRY.xlsx
-│
-└── 00_datos/
-    └── full_intendentes_margen_2001_2021.RData
+└── manuales_e_infos_criticas/
+    └── nombres_estandarizados_distritos_PRY.xlsx
 ```
 
-> **Nota:** Los PDFs originales y los archivos de trabajo en progreso **no** se almacenan
-> en este repositorio. Están en el Google Drive compartido del equipo.
+> **Nota:** Los PDFs originales, las plantillas Excel y los archivos de trabajo en
+> progreso **no** se almacenan en este repositorio. Están en el Google Drive
+> compartido del equipo (carpetas `PLANTILLAS/`, `INSTRUCCIONES/` y
+> `trabajo_estudiantes/`).
 
 ---
 
 ## Convención de nombres
 
-### Archivos en `datos/`
+### Archivos en `00_datos/`
 
 ```
 [año]_[tipo].xlsx
@@ -88,14 +85,14 @@ irregulares (ej. 1998, 2002) correspondientes a municipios de nueva creación.
 
 | Rol | Nombre | Distritos |
 |---|---|---|
-| Investigador principal | Camilo | San Bernardino, Altos |
+| Investigador principal | Camilo | Distritos de Presidente Hayes · San Bernardino, Altos (Cordillera) |
 | Estudiante | Alejandra | Capiatá, Areguá, Villeta, Fernando de la Mora |
 | Estudiante | Samuel | San Lorenzo, Luque, Ypané, Guarambaré |
 | Estudiante | Isabel | Mariano Roque Alonso, Asunción, Limpio, José Augusto Saldívar |
 | Estudiante | Joel | Lambáre, Villa Elisa, San Antonio, Ñemby |
 | Estudiante | Daniel | Itá, Ypacaraí, Itauguá, Nueva Italia |
-| Asistente | Leti | Validación y revisión cruzada |
-| Asistente | Fabri | Validación y revisión cruzada |
+| Asistente | Leti | Distritos de Alto Paraguay |
+| Asistente | Fabri | Distritos de Boquerón |
 
 ---
 
@@ -111,9 +108,9 @@ irregulares (ej. 1998, 2002) correspondientes a municipios de nueva creación.
    git pull
    ```
 
-3. Cuando terminás un Excel, copialo a la carpeta correspondiente en `datos/` y:
+3. Cuando terminás un Excel, copialo a la carpeta correspondiente en `00_datos/` y:
    ```bash
-   git add datos/central/capiata/intendentes/2015_entrada.xlsx
+   git add 00_datos/central/capiata/intendentes/2015_entrada.xlsx
    git commit -m "agrego DJB 2015 entrada intendente Capiata"
    git push
    ```

@@ -1768,7 +1768,7 @@ final</h2>
 <p>GitHub es donde se guarda la versión <strong>final y limpia</strong>
 de los datos, organizada por departamento y distrito. Los PDFs
 <strong>no</strong> van en GitHub (solo van en el Drive).</p>
-<pre><code>datos/
+<pre><code>00_datos/
 ├── central/
 │   ├── capiata/
 │   │   ├── intendentes/
@@ -1797,9 +1797,9 @@ para que el proyecto sea ordenado.</p>
 <h2><span class="header-section-number">3.1</span> Nombres de carpetas
 de distritos</h2>
 <p>Cuando necesitás crear una nueva carpeta de distrito en
-<code>datos/</code> (porque el proyecto se expande a nuevas zonas), el
-nombre de la carpeta debe coincidir <strong>exactamente</strong> con el
-valor de la columna <code>nombre_distrito_estandarizado</code> del
+<code>00_datos/</code> (porque el proyecto se expande a nuevas zonas),
+el nombre de la carpeta debe coincidir <strong>exactamente</strong> con
+el valor de la columna <code>nombre_distrito_estandarizado</code> del
 archivo de referencia:</p>
 <blockquote>
 <p><strong><code>manual/nombres_estandarizados_distritos_PRY.xlsx</code></strong></p>
@@ -1922,8 +1922,8 @@ mismo año, agregá una letra:
 (repositorio final)</h2>
 <p>En GitHub los archivos se nombran solo con año y tipo, porque ya
 están dentro de la carpeta del distrito:</p>
-<pre><code>datos/central/capiata/intendentes/2015_entrada.xlsx
-datos/central/capiata/concejales/2015_entrada.xlsx</code></pre>
+<pre><code>00_datos/central/capiata/intendentes/2015_entrada.xlsx
+00_datos/central/capiata/concejales/2015_entrada.xlsx</code></pre>
 <hr />
 </div>
 </div>
@@ -2391,7 +2391,7 @@ trabajar</h3>
 repositorio:</p>
 <p><strong>1. Copiá el Excel terminado al lugar correcto en el
 repositorio:</strong></p>
-<pre><code>datos/central/capiata/intendentes/2015_entrada.xlsx</code></pre>
+<pre><code>00_datos/central/capiata/intendentes/2015_entrada.xlsx</code></pre>
 <p><strong>2. Verificá qué archivos cambiaste:</strong></p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div>
 <p>Vas a ver algo así:</p>
@@ -2403,9 +2403,9 @@ repositorio:</strong></p>
 Untracked files:
   (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
 
-    datos/central/capiata/intendentes/2015_entrada.xlsx</code></pre>
+    00_datos/central/capiata/intendentes/2015_entrada.xlsx</code></pre>
 <p><strong>3. Agregá los archivos que querés guardar:</strong></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">git</span> add datos/central/capiata/intendentes/2015_entrada.xlsx</span>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">git</span> add 00_datos/central/capiata/intendentes/2015_entrada.xlsx</span>
 <span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="fu">git</span> add registro_progreso/progreso.xlsx</span></code></pre></div>
 <p>O si querés agregar todo de una vez:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">git</span> add .</span></code></pre></div>

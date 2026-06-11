@@ -153,7 +153,7 @@ GitHub es donde se guarda la versión **final y limpia** de los datos, organizad
 departamento y distrito. Los PDFs **no** van en GitHub (solo van en el Drive).
 
 ```
-datos/
+00_datos/
 ├── central/
 │   ├── capiata/
 │   │   ├── intendentes/
@@ -180,7 +180,7 @@ Seguir esta convención **estrictamente** es fundamental para que el proyecto se
 
 ## Nombres de carpetas de distritos
 
-Cuando necesitás crear una nueva carpeta de distrito en `datos/` (porque el proyecto se
+Cuando necesitás crear una nueva carpeta de distrito en `00_datos/` (porque el proyecto se
 expande a nuevas zonas), el nombre de la carpeta debe coincidir **exactamente** con el
 valor de la columna `nombre_distrito_estandarizado` del archivo de referencia:
 
@@ -256,8 +256,8 @@ En GitHub los archivos se nombran solo con año y tipo, porque ya están dentro 
 carpeta del distrito:
 
 ```
-datos/central/capiata/intendentes/2015_entrada.xlsx
-datos/central/capiata/concejales/2015_entrada.xlsx
+00_datos/central/capiata/intendentes/2015_entrada.xlsx
+00_datos/central/capiata/concejales/2015_entrada.xlsx
 ```
 
 ---
@@ -574,7 +574,7 @@ Cuando terminaste de llenar un Excel y lo querés guardar en el repositorio:
 **1. Copiá el Excel terminado al lugar correcto en el repositorio:**
 
 ```
-datos/central/capiata/intendentes/2015_entrada.xlsx
+00_datos/central/capiata/intendentes/2015_entrada.xlsx
 ```
 
 **2. Verificá qué archivos cambiaste:**
@@ -594,13 +594,13 @@ Changes not staged for commit:
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
 
-    datos/central/capiata/intendentes/2015_entrada.xlsx
+    00_datos/central/capiata/intendentes/2015_entrada.xlsx
 ```
 
 **3. Agregá los archivos que querés guardar:**
 
 ```bash
-git add datos/central/capiata/intendentes/2015_entrada.xlsx
+git add 00_datos/central/capiata/intendentes/2015_entrada.xlsx
 git add registro_progreso/progreso.xlsx
 ```
 
