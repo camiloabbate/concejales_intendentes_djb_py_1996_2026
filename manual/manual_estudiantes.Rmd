@@ -419,9 +419,8 @@ del declarante. Compará con el nombre de la fila:
 
 <div class="aviso">
 **Ojo con los homónimos:** padre e hijo con el mismo nombre en el mismo distrito
-es más común de lo que parece. Pistas para distinguirlos: la **edad** (el panel
-muestra la edad al ser electo), el período del cargo, y la sección de datos
-personales del PDF.
+es más común de lo que parece. Pistas para distinguirlos: el período del cargo y
+la **fecha de nacimiento** en la sección de datos personales del PDF.
 </div>
 
 ## Tarea 2 — Revisar las declaraciones ya tabuladas

@@ -237,7 +237,7 @@ function render() {
 
     // --- político
     let nom = `<span class="nombre">${r.nombre || "(SIN NOMBRE EN TSJE)"}</span>`;
-    if (r.sexo) nom += ` <span class="sub">${r.sexo}${r.edad ? ", " + r.edad + " años (al ser electo/a)" : ""}</span>`;
+    if (r.sexo) nom += ` <span class="sub">${r.sexo}</span>`;
     if (r.nombre_alternativo) nom += `<br><span class="badge b-amar" title="El TSJE registró también esta grafía">alt: ${r.nombre_alternativo}</span>`;
     if (r.tipo_eleccion && r.tipo_eleccion !== "municipales") nom += `<br><span class="badge b-gris">complementaria ${r.ano}</span>`;
 
