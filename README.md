@@ -28,14 +28,11 @@ municipales de 1996 hasta 2021.
 ├── manual/
 │   └── manual_estudiantes.Rmd     ← Manual completo del proyecto (compilar a HTML)
 │
-├── registro_progreso/
-│   ├── panel_djb_central_asuncion.html  ← Panel interactivo de trabajo (abrir con doble click)
-│   ├── panel_djb_data.js                ← Datos del panel (generado, no editar)
-│   ├── avances/                         ← CSVs de avance exportados desde el panel
-│   └── progreso.xlsx                    ← Hoja de seguimiento del estado por distrito/año/cargo
-│
-└── manuales_e_infos_criticas/
-    └── nombres_estandarizados_distritos_PRY.xlsx
+└── registro_progreso/
+    ├── panel_djb_central_asuncion.html  ← Panel interactivo de trabajo (abrir con doble click)
+    ├── panel_djb_data.js                ← Datos del panel (generado, no editar)
+    ├── avances/                         ← CSVs de avance exportados desde el panel
+    └── progreso.xlsx                    ← Hoja de seguimiento del estado por distrito/año/cargo
 ```
 
 > **Nota:** Los PDFs originales, las plantillas Excel y los archivos de trabajo en

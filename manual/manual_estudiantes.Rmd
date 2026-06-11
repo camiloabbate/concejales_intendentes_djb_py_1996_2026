@@ -180,14 +180,9 @@ Seguir esta convención **estrictamente** es fundamental para que el proyecto se
 
 ## Nombres de carpetas de distritos
 
-Cuando necesitás crear una nueva carpeta de distrito en `00_datos/` (porque el proyecto se
-expande a nuevas zonas), el nombre de la carpeta debe coincidir **exactamente** con el
-valor de la columna `nombre_distrito_estandarizado` del archivo de referencia:
-
-> **`manual/nombres_estandarizados_distritos_PRY.xlsx`**
-
-Este archivo tiene 263 distritos de todo Paraguay. La primera columna,
-`nombre_distrito_estandarizado`, es el nombre oficial a usar en el repositorio:
+Las carpetas de tus distritos **ya están creadas** en `00_datos/` con el nombre
+estandarizado correcto — no deberías necesitar crear ninguna. El nombre estandarizado
+de cada distrito es el que ves en la columna **Distrito** del panel interactivo:
 todo en **minúsculas**, **sin espacios**, **sin tildes**, **sin guiones**, **sin caracteres especiales**.
 
 **Ejemplos de cómo se ven:**
@@ -202,14 +197,10 @@ todo en **minúsculas**, **sin espacios**, **sin tildes**, **sin guiones**, **si
 | Ñemby | `nemby` |
 
 <div class="importante">
-**Nunca inventes el nombre de una carpeta de memoria.** Siempre consultá el archivo
-`nombres_estandarizados_distritos_PRY.xlsx` para verificar el nombre correcto.
-Si el distrito no aparece en el archivo, avisale a Camilo antes de crear la carpeta.
+**Nunca inventes el nombre de una carpeta de memoria.** Usá siempre el nombre tal
+como aparece en la columna **Distrito** del panel. Si tu distrito no tiene carpeta
+en `00_datos/`, avisale a Camilo antes de crear una.
 </div>
-
-El archivo también tiene las columnas `nombre_dpto_estandarizado` (para el nombre de la
-carpeta del departamento) y `nombre_distrito_alternativo` (el nombre legible, solo para
-tu referencia — **no** lo uses como nombre de carpeta).
 
 ## Archivos en el Drive (tu carpeta de trabajo)
 
