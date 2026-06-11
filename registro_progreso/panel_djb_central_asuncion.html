@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Panel DJB — Central y Asunción (1996–2021)</title>
+<title>Panel DJB — Central, Asunción y Chaco (1996–2021)</title>
 <style>
   :root {
     --azul: #1a5276; --azul-claro: #d4e6f1; --verde: #1e8449; --verde-claro: #d5f5e3;
@@ -59,14 +59,14 @@
 <body>
 
 <header>
-  <h1>Panel DJB — Intendentes y Concejales electos · Central y Asunción (1996–2021)</h1>
+  <h1>Panel DJB — Intendentes y Concejales electos · Central, Asunción y Chaco (1996–2021)</h1>
   <p>Tareas: ① validar cédula · ② revisar declaraciones ya tabuladas · ③ digitalizar las que faltan desde el
      <a href="https://portaldjbr.contraloria.gov.py/portal-djbr/" target="_blank" style="color:#aed6f1">Portal DJB de la Contraloría</a>.
      Tu avance se guarda solo en este navegador — <b>exportá el CSV al terminar cada sesión</b>.</p>
 </header>
 
 <div class="toolbar">
-  <div class="grupo"><label>Estudiante</label><select id="f-est"><option value="">Todos</option></select></div>
+  <div class="grupo"><label>Responsable</label><select id="f-est"><option value="">Todos</option></select></div>
   <div class="grupo"><label>Distrito</label><select id="f-dis"><option value="">Todos</option></select></div>
   <div class="grupo"><label>Ventana</label><select id="f-ven"><option value="">Todas</option></select></div>
   <div class="grupo"><label>Cargo</label><select id="f-car"><option value="">Todos</option><option>INTENDENTE</option><option>JUNTA MUNICIPAL</option></select></div>
@@ -115,7 +115,6 @@
   <span id="aviso-guardado">✓ guardado</span>
 </footer>
 
-<script src="panel_djb_data.js"></script>
 <script>
 "use strict";
 
@@ -328,7 +327,7 @@ function csvCampo(x) {
 }
 
 function exportarCSV() {
-  const cab = ["id", "estudiante", "distrito", "ventana", "cargo", "tit_sup", "orden",
+  const cab = ["id", "responsable", "distrito", "ventana", "cargo", "tit_sup", "orden",
                "nombre", "cedula_original", "chequeo_automatico",
                "estado_cedula", "cedula_corregida", "djb_inicio", "djb_fin",
                "actualizaciones", "observaciones", "completado", "ultima_edicion"];
@@ -387,15 +386,29 @@ function importarCSV(archivo) {
 }
 
 /* ============================ init ============================ */
-poblarFiltros();
-["f-dis", "f-ven", "f-car", "f-tit", "f-sta"].forEach(id =>
-  document.getElementById(id).addEventListener("change", render));
-$("#f-est").addEventListener("change", () => { poblarDistritos(); render(); });
-$("#f-txt").addEventListener("input", () => { clearTimeout(window.__t); window.__t = setTimeout(render, 250); });
-$("#btn-exportar").addEventListener("click", exportarCSV);
-$("#btn-importar").addEventListener("click", () => $("#file-import").click());
-$("#file-import").addEventListener("change", e => { if (e.target.files[0]) importarCSV(e.target.files[0]); e.target.value = ""; });
-render();
+function iniciar() {
+  poblarFiltros();
+  ["f-dis", "f-ven", "f-car", "f-tit", "f-sta"].forEach(id =>
+    document.getElementById(id).addEventListener("change", render));
+  $("#f-est").addEventListener("change", () => { poblarDistritos(); render(); });
+  $("#f-txt").addEventListener("input", () => { clearTimeout(window.__t); window.__t = setTimeout(render, 250); });
+  $("#btn-exportar").addEventListener("click", exportarCSV);
+  $("#btn-importar").addEventListener("click", () => $("#file-import").click());
+  $("#file-import").addEventListener("change", e => { if (e.target.files[0]) importarCSV(e.target.files[0]); e.target.value = ""; });
+  render();
+}
+
+// Carga de datos con anti-caché: el ?v= cambia en cada apertura, así el
+// navegador nunca usa una versión vieja de panel_djb_data.js
+const cargador = document.createElement("script");
+cargador.src = "panel_djb_data.js?v=" + Date.now();
+cargador.onload = iniciar;
+cargador.onerror = () => {
+  const v = document.getElementById("vacio");
+  v.style.display = "block";
+  v.textContent = "No se encontró panel_djb_data.js — tiene que estar en la misma carpeta que este archivo HTML.";
+};
+document.head.appendChild(cargador);
 </script>
 </body>
 </html>

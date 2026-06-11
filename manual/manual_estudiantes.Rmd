@@ -94,14 +94,19 @@ Todas las DJBs se encuentran en el portal oficial de la Contraloría:
 
 | Rol | Nombre | Distritos asignados |
 |---|---|---|
-| Investigador principal | Camilo | San Bernardino, Altos (Cordillera) |
+| Investigador principal | Camilo | Todos los distritos de **Presidente Hayes** · San Bernardino, Altos (Cordillera) |
 | Estudiante | Alejandra | Capiatá, Areguá, Villeta, Fernando de la Mora |
 | Estudiante | Samuel | San Lorenzo, Luque, Ypané, Guarambaré |
 | Estudiante | Isabel | Mariano Roque Alonso, Asunción, Limpio, José Augusto Saldívar |
 | Estudiante | Joel | Lambáre, Villa Elisa, San Antonio, Ñemby |
 | Estudiante | Daniel | Itá, Ypacaraí, Itauguá, Nueva Italia |
-| Asistente de investigación | Leti | Validación y revisión cruzada |
-| Asistente de investigación | Fabri | Validación y revisión cruzada |
+| Asistente de investigación | Leti | Todos los distritos de **Alto Paraguay** |
+| Asistente de investigación | Fabri | Todos los distritos de **Boquerón** |
+
+<div class="info">
+Estudiantes y asistentes trabajan **exactamente igual**: el mismo panel, las mismas
+tres tareas, el mismo flujo. La única diferencia es qué distritos le tocan a cada uno.
+</div>
 
 ---
 
@@ -379,6 +384,11 @@ registro_progreso/panel_djb_central_asuncion.html
 **Cómo abrirlo:** hacé `git pull` para tener la última versión y abrí el archivo
 con doble click (se abre en tu navegador, no necesita internet salvo para los
 links a los PDFs).
+
+El panel cubre los distritos de **Central y Asunción** (estudiantes) y los de
+**Boquerón, Alto Paraguay y Presidente Hayes** (Fabri, Leti y Camilo respectivamente).
+Lo primero que hacés al abrirlo es **elegir tu nombre en el selector "Responsable"**
+(arriba a la izquierda): el panel te muestra solo tus distritos.
 
 El panel tiene **una fila por cada político electo** de tus distritos, para todas
 las ventanas de elección desde 1996–2001 hasta 2015–2021. Empezamos por la ventana
