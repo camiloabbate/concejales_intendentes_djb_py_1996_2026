@@ -13,3 +13,6 @@
 
 # Archivos grandes de datos R procesados
 *.RData
+
+# Configuracion local de Claude Code (especifica de cada maquina)
+.claude/

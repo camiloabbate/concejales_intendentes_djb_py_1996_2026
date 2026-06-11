@@ -368,6 +368,99 @@ Esto aplica a todos los valores numéricos en las tres plantillas.
 
 ---
 
+# El panel interactivo: tus tres tareas
+
+Para organizar el trabajo usamos un **panel interactivo** que vive en el repositorio:
+
+```
+registro_progreso/panel_djb_central_asuncion.html
+```
+
+**Cómo abrirlo:** hacé `git pull` para tener la última versión y abrí el archivo
+con doble click (se abre en tu navegador, no necesita internet salvo para los
+links a los PDFs).
+
+El panel tiene **una fila por cada político electo** de tus distritos, para todas
+las ventanas de elección desde 1996–2001 hasta 2015–2021. Empezamos por la ventana
+**2015–2021** (es la que viene seleccionada por defecto). Cada fila ya trae:
+
+| Columna | Qué es |
+|---|---|
+| Político/a | Nombre según el TSJE (si hay una grafía alternativa, aparece abajo en amarillo) |
+| Cédula | La que asignamos automáticamente. `✓✓` = ya verificada contra otro archivo. `SIN CÉDULA` = hay que encontrarla |
+| PDFs en portal | Links directos a las declaraciones que la Contraloría tiene escaneadas — **click y se abre el PDF** |
+| Ya tabulado | Años de las declaraciones que ya fueron tabuladas a Excel por Camilo |
+
+Y tres cosas que **vos** tenés que completar (se explican abajo): la validación de
+la cédula, el estado de la DJB de inicio y fin de mandato, y las actualizaciones.
+
+<div class="importante">
+**Tu avance se guarda solo en TU navegador y en TU computadora.** Si cambiás de
+computadora o borrás el historial del navegador, se pierde. Por eso, **al terminar
+cada sesión de trabajo apretá "⬇ Exportar CSV"** y guardá el archivo en
+`registro_progreso/avances/` con tu nombre, y subilo a GitHub (pull → commit → push).
+Para retomar en otra computadora: botón "Importar CSV".
+</div>
+
+## Tarea 1 — Validar la cédula
+
+La cédula es la clave que une al político con sus declaraciones. Una cédula
+equivocada significa que vamos a estudiar el patrimonio de la persona equivocada.
+
+**Cómo validar:** abrí cualquiera de los PDFs de la columna "PDFs en portal".
+En la primera página de toda DJB figuran el **nombre completo** y la **cédula**
+del declarante. Compará con el nombre de la fila:
+
+- Coinciden nombre y cédula → marcá **✓ Confirmada**.
+- El PDF muestra otra cédula para esa persona, o encontraste la cédula de alguien
+  que estaba `SIN CÉDULA` → marcá **✎ Corregida / encontrada** y escribí la cédula
+  correcta en el campo que aparece.
+- No hay PDFs y no encontrás a la persona en el portal → **✗ No se pudo verificar**.
+
+<div class="aviso">
+**Ojo con los homónimos:** padre e hijo con el mismo nombre en el mismo distrito
+es más común de lo que parece. Pistas para distinguirlos: la **edad** (el panel
+muestra la edad al ser electo), el período del cargo, y la sección de datos
+personales del PDF.
+</div>
+
+## Tarea 2 — Revisar las declaraciones ya tabuladas
+
+Si la fila tiene chips verdes en "Ya tabulado", esa declaración ya fue pasada a
+Excel. Tu tarea es **controlar que la tabulación esté bien hecha**:
+
+1. Pasá el mouse por el chip verde: te muestra el **nombre del archivo Excel**.
+2. Buscá ese archivo en el Drive (carpeta `lo_que_ya_hizo_Camilo`, preguntale a
+   Camilo en qué subcarpeta está si no lo encontrás).
+3. Abrí el PDF original (chip azul del mismo año) y compará **sección por sección**:
+   datos personales, depósitos, inmuebles, vehículos, pasivos, ingresos, egresos
+   y los totales del resumen.
+4. Marcá en el panel:
+   - **✓ Ya tabulada y revisada OK** si está todo bien.
+   - **⚠ Tabulada pero con errores** si encontraste problemas — anotá en
+     "Observaciones" qué sección tiene el error.
+
+## Tarea 3 — Digitalizar lo que falta
+
+Si para el político no hay nada tabulado (columna "Ya tabulado" vacía), hay que
+digitalizar la DJB siguiendo el **flujo de trabajo paso a paso** de la sección
+siguiente (portal → plantilla → Excel → Drive → GitHub).
+
+- Cuando termines de digitalizar una declaración, marcá **✎ La digitalicé yo (nueva)**.
+- Si la persona **no aparece en el portal** o no tiene ninguna declaración del
+  período que te toca, marcá **∅ No declaró o no hay datos en la Contraloría**.
+  Eso también es un dato — no lo dejes en blanco.
+
+<div class="info">
+**¿Inicio o fin de mandato?** Una DJB de *inicio* tiene fecha cercana a la asunción
+(ej. para la ventana 2015–2021: fines de 2015 o 2016). Una de *fin*, cercana a la
+entrega del cargo (2021). Las fechas intermedias suelen ser **actualizaciones** —
+para eso está la columna "③ Actualizaciones": marcá si no hay, si ya están
+tabuladas, o si hay y faltan tabular.
+</div>
+
+---
+
 # Flujo de trabajo paso a paso
 
 ## Resumen del flujo

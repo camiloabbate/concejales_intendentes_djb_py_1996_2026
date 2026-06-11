@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel DJB — Central y Asunción (1996–2021)</title>
+<style>
+  :root {
+    --azul: #1a5276; --azul-claro: #d4e6f1; --verde: #1e8449; --verde-claro: #d5f5e3;
+    --rojo: #c0392b; --rojo-claro: #fadbd8; --amarillo: #b7950b; --amarillo-claro: #fcf3cf;
+    --gris: #707b7c; --gris-claro: #f2f3f4; --borde: #d5d8dc;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: "Segoe UI", Arial, sans-serif; margin: 0; background: #fafbfc; color: #212f3c; font-size: 14px; }
+  header { background: var(--azul); color: white; padding: 14px 22px; }
+  header h1 { margin: 0; font-size: 19px; }
+  header p { margin: 4px 0 0; font-size: 12.5px; opacity: .85; }
+  .toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: end; padding: 12px 22px; background: white; border-bottom: 1px solid var(--borde); position: sticky; top: 0; z-index: 20; }
+  .toolbar label { display: block; font-size: 11px; color: var(--gris); margin-bottom: 2px; font-weight: 600; text-transform: uppercase; }
+  .toolbar select, .toolbar input[type=text] { padding: 6px 8px; border: 1px solid var(--borde); border-radius: 6px; font-size: 13px; background: white; min-width: 110px; }
+  .toolbar .grupo { display: flex; flex-direction: column; }
+  .toolbar .botones { margin-left: auto; display: flex; gap: 8px; }
+  button { padding: 8px 14px; border: none; border-radius: 6px; font-size: 13px; cursor: pointer; font-weight: 600; }
+  .btn-azul { background: var(--azul); color: white; }
+  .btn-gris { background: var(--gris-claro); color: #212f3c; border: 1px solid var(--borde); }
+  .btn-azul:hover { background: #154360; }
+  .resumen { padding: 10px 22px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .chip-prog { background: white; border: 1px solid var(--borde); border-radius: 16px; padding: 4px 12px; font-size: 12.5px; }
+  .chip-prog b { color: var(--azul); }
+  .barra { flex: 1; min-width: 160px; max-width: 340px; height: 10px; background: var(--gris-claro); border-radius: 6px; overflow: hidden; }
+  .barra > div { height: 100%; background: var(--verde); transition: width .3s; }
+  main { padding: 0 22px 60px; }
+  table { border-collapse: collapse; width: 100%; background: white; font-size: 13px; }
+  thead th { background: var(--azul-claro); color: #154360; padding: 8px 6px; text-align: left; position: sticky; top: 64px; z-index: 10; border-bottom: 2px solid var(--azul); font-size: 11.5px; text-transform: uppercase; }
+  tbody td { padding: 7px 6px; border-bottom: 1px solid var(--borde); vertical-align: top; }
+  tbody tr:hover { background: #fdfefe; }
+  tr.fila-completa { background: var(--verde-claro) !important; }
+  tr.fila-grupo td { background: #eaf2f8; font-weight: 700; color: #154360; padding: 9px 8px; font-size: 13.5px; border-top: 2px solid var(--azul); }
+  .badge { display: inline-block; border-radius: 4px; padding: 1px 6px; font-size: 11px; font-weight: 700; }
+  .b-rojo { background: var(--rojo-claro); color: var(--rojo); }
+  .b-verde { background: var(--verde-claro); color: var(--verde); }
+  .b-amar { background: var(--amarillo-claro); color: var(--amarillo); }
+  .b-gris { background: var(--gris-claro); color: var(--gris); }
+  .pdfchip { display: inline-block; margin: 1px 2px 1px 0; padding: 1px 7px; background: var(--azul-claro); color: #154360; border-radius: 10px; font-size: 11.5px; text-decoration: none; font-weight: 600; }
+  .pdfchip:hover { background: var(--azul); color: white; }
+  .tabchip { display: inline-block; margin: 1px 2px 1px 0; padding: 1px 7px; background: var(--verde-claro); color: var(--verde); border-radius: 10px; font-size: 11.5px; font-weight: 600; cursor: help; }
+  td select { width: 100%; max-width: 175px; padding: 4px; border: 1px solid var(--borde); border-radius: 5px; font-size: 12px; background: white; }
+  td select.editado { border-color: var(--verde); background: var(--verde-claro); }
+  td select.alerta { border-color: var(--rojo); background: var(--rojo-claro); }
+  td input[type=text] { width: 100%; padding: 4px 6px; border: 1px solid var(--borde); border-radius: 5px; font-size: 12px; }
+  .nombre { font-weight: 600; }
+  .sub { color: var(--gris); font-size: 11.5px; }
+  .num { text-align: right; }
+  .vacio { padding: 40px; text-align: center; color: var(--gris); font-size: 15px; }
+  footer { position: fixed; bottom: 0; left: 0; right: 0; background: #fdfefe; border-top: 1px solid var(--borde); padding: 6px 22px; font-size: 12px; color: var(--gris); display: flex; justify-content: space-between; }
+  #aviso-guardado { color: var(--verde); font-weight: 700; opacity: 0; transition: opacity .4s; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Panel DJB — Intendentes y Concejales electos · Central y Asunción (1996–2021)</h1>
+  <p>Tareas: ① validar cédula · ② revisar declaraciones ya tabuladas · ③ digitalizar las que faltan desde el
+     <a href="https://portaldjbr.contraloria.gov.py/portal-djbr/" target="_blank" style="color:#aed6f1">Portal DJB de la Contraloría</a>.
+     Tu avance se guarda solo en este navegador — <b>exportá el CSV al terminar cada sesión</b>.</p>
+</header>
+
+<div class="toolbar">
+  <div class="grupo"><label>Estudiante</label><select id="f-est"><option value="">Todos</option></select></div>
+  <div class="grupo"><label>Distrito</label><select id="f-dis"><option value="">Todos</option></select></div>
+  <div class="grupo"><label>Ventana</label><select id="f-ven"><option value="">Todas</option></select></div>
+  <div class="grupo"><label>Cargo</label><select id="f-car"><option value="">Todos</option><option>INTENDENTE</option><option>JUNTA MUNICIPAL</option></select></div>
+  <div class="grupo"><label>Tit/Sup</label><select id="f-tit"><option value="">Todos</option><option>TITULAR</option><option>SUPLENTE</option></select></div>
+  <div class="grupo"><label>Estado</label><select id="f-sta"><option value="">Todos</option><option value="pend">Pendientes</option><option value="comp">Completados</option></select></div>
+  <div class="grupo"><label>Buscar</label><input type="text" id="f-txt" placeholder="nombre o cédula…"></div>
+  <div class="botones">
+    <button class="btn-gris" id="btn-importar">Importar CSV</button>
+    <input type="file" id="file-import" accept=".csv" style="display:none">
+    <button class="btn-azul" id="btn-exportar">⬇ Exportar CSV</button>
+  </div>
+</div>
+
+<div class="resumen">
+  <span class="chip-prog">Filas: <b id="r-total">0</b></span>
+  <span class="chip-prog">Completas: <b id="r-comp">0</b></span>
+  <span class="chip-prog">Sin cédula: <b id="r-sincedula">0</b></span>
+  <div class="barra"><div id="r-barra" style="width:0%"></div></div>
+  <span class="sub" id="r-pct">0%</span>
+</div>
+
+<main>
+  <table id="tabla">
+    <thead>
+      <tr>
+        <th style="min-width:170px">Político/a</th>
+        <th>Cargo</th>
+        <th>Lista</th>
+        <th style="min-width:90px">Cédula</th>
+        <th style="min-width:150px">① Validación cédula</th>
+        <th style="min-width:130px">PDFs en portal</th>
+        <th style="min-width:90px">Ya tabulado</th>
+        <th style="min-width:160px">② DJB inicio de mandato</th>
+        <th style="min-width:160px">② DJB fin de mandato</th>
+        <th style="min-width:140px">③ Actualizaciones</th>
+        <th style="min-width:170px">Observaciones</th>
+      </tr>
+    </thead>
+    <tbody id="cuerpo"></tbody>
+  </table>
+  <div class="vacio" id="vacio" style="display:none">No hay filas con estos filtros.</div>
+</main>
+
+<footer>
+  <span>Generado a partir de datos del TSJE + Contraloría · py 1996–2026</span>
+  <span id="aviso-guardado">✓ guardado</span>
+</footer>
+
+<script src="panel_djb_data.js"></script>
+<script>
+"use strict";
+
+/* ============================ opciones de estado ============================ */
+const OPC_CEDULA = [
+  ["", "— pendiente —"],
+  ["confirmada", "✓ Confirmada (es la persona correcta)"],
+  ["corregida", "✎ Corregida / encontrada (anotar abajo)"],
+  ["no_encontrada", "✗ No se pudo verificar"]
+];
+const OPC_DJB = [
+  ["", "— pendiente —"],
+  ["ok_tabulada", "✓ Ya tabulada y revisada OK"],
+  ["tabulada_errores", "⚠ Tabulada pero con errores (anotar)"],
+  ["digitalizada_nueva", "✎ La digitalicé yo (nueva)"],
+  ["no_declaro", "∅ No declaró o no hay datos en la Contraloría"]
+];
+const OPC_ACTUAL = [
+  ["", "— pendiente —"],
+  ["no_hay", "No hay actualizaciones"],
+  ["tabuladas", "Hay y están tabuladas"],
+  ["faltan", "Hay y FALTAN tabular"]
+];
+
+const CLAVE = id => "djbpanel_v1::" + id;
+const VENTANA_DEFAULT = "2015_2021";
+
+/* ============================ estado por fila ============================ */
+function leerEstado(id) {
+  try { return JSON.parse(localStorage.getItem(CLAVE(id))) || {}; }
+  catch (e) { return {}; }
+}
+function guardarEstado(id, est) {
+  est.ts = new Date().toISOString();
+  localStorage.setItem(CLAVE(id), JSON.stringify(est));
+  const av = document.getElementById("aviso-guardado");
+  av.style.opacity = 1; setTimeout(() => av.style.opacity = 0, 1200);
+}
+function filaCompleta(est) {
+  return !!(est.ec && est.de && est.ds && est.ac);
+}
+function arr(x) { return Array.isArray(x) ? x : []; }
+
+/* ============================ filtros ============================ */
+const $ = sel => document.querySelector(sel);
+
+function poblarFiltros() {
+  const ests = [...new Set(DATA.map(r => r.estudiante))].sort();
+  const vens = [...new Set(DATA.map(r => r.ventana))].sort();
+  ests.forEach(e => $("#f-est").appendChild(new Option(e, e)));
+  vens.forEach(v => $("#f-ven").appendChild(new Option(v.replace("_", "–"), v)));
+  $("#f-ven").value = VENTANA_DEFAULT;
+  poblarDistritos();
+}
+function poblarDistritos() {
+  const est = $("#f-est").value;
+  const sel = $("#f-dis");
+  const actual = sel.value;
+  sel.innerHTML = '<option value="">Todos</option>';
+  const dists = [...new Set(DATA.filter(r => !est || r.estudiante === est).map(r => r.distrito))].sort();
+  dists.forEach(d => sel.appendChild(new Option(d, d)));
+  if (dists.includes(actual)) sel.value = actual;
+}
+
+function filtrar() {
+  const est = $("#f-est").value, dis = $("#f-dis").value, ven = $("#f-ven").value,
+        car = $("#f-car").value, tit = $("#f-tit").value, sta = $("#f-sta").value,
+        txt = $("#f-txt").value.trim().toUpperCase();
+  return DATA.filter(r => {
+    if (est && r.estudiante !== est) return false;
+    if (dis && r.distrito !== dis) return false;
+    if (ven && r.ventana !== ven) return false;
+    if (car && r.cargo !== car) return false;
+    if (tit && r.tit_sup !== tit) return false;
+    if (txt) {
+      const blob = ((r.nombre || "") + " " + (r.cedula || "")).toUpperCase();
+      if (!blob.includes(txt)) return false;
+    }
+    if (sta) {
+      const comp = filaCompleta(leerEstado(r.id));
+      if (sta === "pend" && comp) return false;
+      if (sta === "comp" && !comp) return false;
+    }
+    return true;
+  });
+}
+
+/* ============================ render ============================ */
+function selectHTML(opciones, valor, claseExtra) {
+  let h = `<select class="${valor ? "editado" : ""} ${claseExtra || ""}">`;
+  for (const [v, t] of opciones) h += `<option value="${v}" ${v === valor ? "selected" : ""}>${t}</option>`;
+  return h + "</select>";
+}
+
+function render() {
+  const filas = filtrar();
+  const cuerpo = $("#cuerpo");
+  cuerpo.innerHTML = "";
+  $("#vacio").style.display = filas.length ? "none" : "block";
+
+  let completas = 0, sinCedula = 0, grupoPrev = "";
+
+  for (const r of filas) {
+    const est = leerEstado(r.id);
+    const comp = filaCompleta(est);
+    if (comp) completas++;
+    if (!r.cedula && !est.cc) sinCedula++;
+
+    const grupo = `${r.estudiante} · ${r.distrito.toUpperCase()} · ${r.ventana.replace("_", "–")}`;
+    if (grupo !== grupoPrev) {
+      cuerpo.insertAdjacentHTML("beforeend",
+        `<tr class="fila-grupo"><td colspan="11">${grupo}</td></tr>`);
+      grupoPrev = grupo;
+    }
+
+    const tr = document.createElement("tr");
+    if (comp) tr.classList.add("fila-completa");
+    tr.dataset.id = r.id;
+
+    // --- político
+    let nom = `<span class="nombre">${r.nombre || "(SIN NOMBRE EN TSJE)"}</span>`;
+    if (r.sexo) nom += ` <span class="sub">${r.sexo}${r.edad ? ", " + r.edad + " años (al ser electo/a)" : ""}</span>`;
+    if (r.nombre_alternativo) nom += `<br><span class="badge b-amar" title="El TSJE registró también esta grafía">alt: ${r.nombre_alternativo}</span>`;
+    if (r.tipo_eleccion && r.tipo_eleccion !== "municipales") nom += `<br><span class="badge b-gris">complementaria ${r.ano}</span>`;
+
+    // --- cargo
+    let cargo = r.cargo === "INTENDENTE"
+      ? `<span class="badge b-verde">INTENDENTE</span>`
+      : `CONCEJAL<br><span class="sub">${(r.tit_sup || "").toLowerCase()} #${r.orden}</span>`;
+
+    // --- cédula
+    let ced;
+    if (r.cedula) {
+      ced = `<b>${r.cedula}</b>`;
+      if (r.cedula_chequeo === "coincide") ced += ` <span class="badge b-verde" title="Coincide con el archivo de cédulas verificadas">✓✓</span>`;
+      if (r.cedula_chequeo === "DISCREPANCIA") ced += ` <span class="badge b-rojo" title="NO coincide con el archivo verificado: revisar sí o sí">⚠</span>`;
+    } else {
+      ced = `<span class="badge b-rojo">SIN CÉDULA</span>`;
+    }
+
+    // --- chips
+    const portal = arr(r.portal).map(p =>
+      `<a class="pdfchip" href="${p.u}" target="_blank" title="Abrir PDF de la declaración (${p.y})">${p.y}</a>`).join("") ||
+      `<span class="sub">— ninguno —</span>`;
+    const tab = arr(r.tab).map(t =>
+      `<span class="tabchip" title="${t.f}">${t.y || "s/f"}</span>`).join("") ||
+      `<span class="sub">—</span>`;
+
+    tr.innerHTML = `
+      <td>${nom}</td>
+      <td>${cargo}</td>
+      <td>${r.lista || "<span class='sub'>—</span>"}</td>
+      <td>${ced}</td>
+      <td>${selectHTML(OPC_CEDULA, est.ec || "", r.cedula ? "" : "alerta")}
+          <input type="text" placeholder="cédula corregida/encontrada" value="${est.cc || ""}"
+                 style="margin-top:3px; ${est.ec === "corregida" || !r.cedula ? "" : "display:none"}"></td>
+      <td>${portal}</td>
+      <td>${tab}</td>
+      <td>${selectHTML(OPC_DJB, est.de || "")}</td>
+      <td>${selectHTML(OPC_DJB, est.ds || "")}</td>
+      <td>${selectHTML(OPC_ACTUAL, est.ac || "")}</td>
+      <td><input type="text" placeholder="notas…" value="${(est.obs || "").replace(/"/g, "&quot;")}"></td>`;
+
+    // listeners
+    const sels = tr.querySelectorAll("select");
+    const inputCed = tr.querySelector("td:nth-child(5) input");
+    const inputObs = tr.querySelector("td:nth-child(11) input");
+
+    sels[0].addEventListener("change", e => {
+      const s = leerEstado(r.id); s.ec = e.target.value; guardarEstado(r.id, s);
+      inputCed.style.display = (e.target.value === "corregida" || !r.cedula) ? "" : "none";
+      refrescarFila(tr, r);
+    });
+    sels[1].addEventListener("change", e => { const s = leerEstado(r.id); s.de = e.target.value; guardarEstado(r.id, s); refrescarFila(tr, r); });
+    sels[2].addEventListener("change", e => { const s = leerEstado(r.id); s.ds = e.target.value; guardarEstado(r.id, s); refrescarFila(tr, r); });
+    sels[3].addEventListener("change", e => { const s = leerEstado(r.id); s.ac = e.target.value; guardarEstado(r.id, s); refrescarFila(tr, r); });
+    inputCed.addEventListener("change", e => { const s = leerEstado(r.id); s.cc = e.target.value.trim(); guardarEstado(r.id, s); });
+    inputObs.addEventListener("change", e => { const s = leerEstado(r.id); s.obs = e.target.value; guardarEstado(r.id, s); });
+
+    cuerpo.appendChild(tr);
+  }
+
+  // resumen
+  $("#r-total").textContent = filas.length;
+  $("#r-comp").textContent = completas;
+  $("#r-sincedula").textContent = sinCedula;
+  const pct = filas.length ? Math.round(100 * completas / filas.length) : 0;
+  $("#r-barra").style.width = pct + "%";
+  $("#r-pct").textContent = pct + "%";
+}
+
+function refrescarFila(tr, r) {
+  const est = leerEstado(r.id);
+  tr.classList.toggle("fila-completa", filaCompleta(est));
+  tr.querySelectorAll("select").forEach(s => s.classList.toggle("editado", !!s.value));
+  // actualizar contadores sin re-render completo
+  const filas = filtrar();
+  let completas = 0;
+  for (const f of filas) if (filaCompleta(leerEstado(f.id))) completas++;
+  $("#r-comp").textContent = completas;
+  const pct = filas.length ? Math.round(100 * completas / filas.length) : 0;
+  $("#r-barra").style.width = pct + "%";
+  $("#r-pct").textContent = pct + "%";
+}
+
+/* ============================ export / import CSV ============================ */
+function csvCampo(x) {
+  x = (x == null ? "" : String(x));
+  return /[;"\n]/.test(x) ? '"' + x.replace(/"/g, '""') + '"' : x;
+}
+
+function exportarCSV() {
+  const cab = ["id", "estudiante", "distrito", "ventana", "cargo", "tit_sup", "orden",
+               "nombre", "cedula_original", "chequeo_automatico",
+               "estado_cedula", "cedula_corregida", "djb_inicio", "djb_fin",
+               "actualizaciones", "observaciones", "completado", "ultima_edicion"];
+  const filas = [cab.join(";")];
+  for (const r of DATA) {
+    const e = leerEstado(r.id);
+    filas.push([
+      r.id, r.estudiante, r.distrito, r.ventana, r.cargo, r.tit_sup, r.orden,
+      r.nombre, r.cedula, r.cedula_chequeo,
+      e.ec, e.cc, e.de, e.ds, e.ac, e.obs,
+      filaCompleta(e) ? "SI" : "NO", e.ts
+    ].map(csvCampo).join(";"));
+  }
+  const blob = new Blob(["﻿" + filas.join("\r\n")], { type: "text/csv;charset=utf-8" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  const est = $("#f-est").value || "todos";
+  a.download = `avance_djb_${est}_${new Date().toISOString().slice(0, 10)}.csv`;
+  a.click();
+}
+
+function importarCSV(archivo) {
+  const lector = new FileReader();
+  lector.onload = () => {
+    const lineas = lector.result.replace(/^﻿/, "").split(/\r?\n/).filter(l => l.trim());
+    const cab = lineas[0].split(";");
+    const iId = cab.indexOf("id");
+    if (iId < 0) { alert("CSV inválido: falta la columna 'id'."); return; }
+    const idx = c => cab.indexOf(c);
+    let n = 0;
+    for (let i = 1; i < lineas.length; i++) {
+      // parser simple de CSV con ; y comillas
+      const campos = [];
+      let cur = "", dentro = false;
+      for (const ch of lineas[i]) {
+        if (ch === '"') { dentro = !dentro; cur += ch; }
+        else if (ch === ";" && !dentro) { campos.push(cur); cur = ""; }
+        else cur += ch;
+      }
+      campos.push(cur);
+      const limpiar = x => (x || "").replace(/^"|"$/g, "").replace(/""/g, '"');
+      const id = limpiar(campos[iId]);
+      if (!id) continue;
+      const e = leerEstado(id);
+      const asignar = (campo, col) => { const v = limpiar(campos[idx(col)]); if (v) e[campo] = v; };
+      asignar("ec", "estado_cedula"); asignar("cc", "cedula_corregida");
+      asignar("de", "djb_inicio"); asignar("ds", "djb_fin");
+      asignar("ac", "actualizaciones"); asignar("obs", "observaciones");
+      localStorage.setItem(CLAVE(id), JSON.stringify(e));
+      n++;
+    }
+    alert("Importadas " + n + " filas de avance.");
+    render();
+  };
+  lector.readAsText(archivo, "utf-8");
+}
+
+/* ============================ init ============================ */
+poblarFiltros();
+["f-dis", "f-ven", "f-car", "f-tit", "f-sta"].forEach(id =>
+  document.getElementById(id).addEventListener("change", render));
+$("#f-est").addEventListener("change", () => { poblarDistritos(); render(); });
+$("#f-txt").addEventListener("input", () => { clearTimeout(window.__t); window.__t = setTimeout(render, 250); });
+$("#btn-exportar").addEventListener("click", exportarCSV);
+$("#btn-importar").addEventListener("click", () => $("#file-import").click());
+$("#file-import").addEventListener("change", e => { if (e.target.files[0]) importarCSV(e.target.files[0]); e.target.value = ""; });
+render();
+</script>
+</body>
+</html>
