@@ -16,3 +16,6 @@
 
 # Configuracion local de Claude Code (especifica de cada maquina)
 .claude/
+
+# sacar los ini
+*.ini
