@@ -1580,7 +1580,7 @@ de Bienes (DJB)</h1>
 1996–2026</h3>
 <h4 class="author">Proyecto de investigación — uso interno del
 equipo</h4>
-<h4 class="date">Actualizado: 11 de June de 2026</h4>
+<h4 class="date">Actualizado: 15 de June de 2026</h4>
 
 </div>
 
@@ -1729,45 +1729,12 @@ diferencia es qué distritos le tocan a cada uno.</p>
 <div id="estructura-del-proyecto" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Estructura del
 proyecto</h1>
-<p>El proyecto usa <strong>dos espacios de trabajo</strong> con roles
-distintos:</p>
-<div id="google-drive-área-de-trabajo" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> Google Drive — área
-de trabajo</h2>
-<p>El Drive es donde los estudiantes trabajan día a día: descargan PDFs,
-llenan las plantillas Excel y guardan sus archivos en progreso.</p>
-<pre><code>datos_concejales_intendentes_DJB/
-│
-├── PLANTILLAS/               ← Las 3 plantillas Excel. SOLO COPIAR, nunca editar.
-│   ├── plantilla1_UNO.xlsx
-│   ├── plantilla2_DOS.xlsx
-│   └── plantilla3_TRES.xlsx
-│
-├── INSTRUCCIONES/            ← Instrucciones detalladas por plantilla
-│   ├── Instrucciones_plantilla_1_UNO.docx
-│   ├── Instrucciones_plantilla_2_DOS.docx
-│   └── Instrucciones_plantilla_3_TRES.docx
-│
-├── trabajo_estudiantes/      ← Cada uno trabaja en su subcarpeta
-│   ├── alejandra/
-│   ├── samuel/
-│   ├── isabel/
-│   ├── joel/
-│   └── daniel/
-│
-└── archivo_historico/        ← Trabajo previo archivado. No tocar.</code></pre>
-<div class="aviso">
-<p><strong>Sobre las plantillas:</strong> Nunca modifiques los archivos
-dentro de <code>PLANTILLAS/</code>. Siempre hacé una copia y trabajá
-sobre la copia.</p>
-</div>
-</div>
-<div id="github-repositorio-final" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> GitHub — repositorio
+<div id="github-repositorio-final" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> GitHub — repositorio
 final</h2>
 <p>GitHub es donde se guarda la versión <strong>final y limpia</strong>
 de los datos, organizada por departamento y distrito. Los PDFs
-<strong>no</strong> van en GitHub (solo van en el Drive).</p>
+<strong>no</strong> van en GitHub.</p>
 <pre><code>00_datos/
 ├── central/
 │   ├── capiata/
@@ -1845,9 +1812,9 @@ Usá siempre el nombre tal como aparece en la columna
 <code>00_datos/</code>, avisale a Camilo antes de crear una.</p>
 </div>
 </div>
-<div id="archivos-en-el-drive-tu-carpeta-de-trabajo" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Archivos en el Drive
-(tu carpeta de trabajo)</h2>
+<div id="nombres-de-archivo" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Nombres de
+archivo</h2>
 <p>El nombre del archivo sigue este formato:</p>
 <pre><code>[cedula]_[NOMBRE COMPLETO]_[año]_[tipo].xlsx</code></pre>
 <p><strong>Ejemplos:</strong></p>
@@ -2180,25 +2147,65 @@ cédula</h2>
 <p>La cédula es la clave que une al político con sus declaraciones. Una
 cédula equivocada significa que vamos a estudiar el patrimonio de la
 persona equivocada.</p>
-<p><strong>Cómo validar:</strong> abrí cualquiera de los PDFs de la
-columna “PDFs en portal”. En la primera página de toda DJB figuran el
-<strong>nombre completo</strong> y la <strong>cédula</strong> del
-declarante. Compará con el nombre de la fila:</p>
+<p>Hay <strong>dos formas</strong> de validar, usá la que te resulte más
+rápida:</p>
+<div id="opción-a-verificar-en-el-pdf-de-la-djb" class="section level3" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> Opción A —
+Verificar en el PDF de la DJB</h3>
+<ol style="list-style-type: decimal">
+<li>Abrí cualquiera de los PDFs de la columna “PDFs en portal”.</li>
+<li>En la <strong>primera página</strong> de toda DJB figuran el nombre
+completo y la cédula del declarante — verificá que coincidan con la
+fila.</li>
+<li>Buscá también la sección de <strong>datos personales / situación
+laboral</strong> del formulario (generalmente en la primera o segunda
+página). Ahí tiene que decir:
 <ul>
-<li>Coinciden nombre y cédula → marcá <strong>✓
-Confirmada</strong>.</li>
-<li>El PDF muestra otra cédula para esa persona, o encontraste la cédula
-de alguien que estaba <code>SIN CÉDULA</code> → marcá <strong>✎
-Corregida / encontrada</strong> y escribí la cédula correcta en el campo
-que aparece.</li>
-<li>No hay PDFs y no encontrás a la persona en el portal → <strong>✗ No
-se pudo verificar</strong>.</li>
+<li><strong>Lugar de trabajo / empleador:</strong> alguna municipalidad
+o la Junta Municipal del distrito correspondiente.</li>
+<li><strong>Cargo / función:</strong> <code>Intendente</code>,
+<code>Intendente Municipal</code>, <code>Concejal</code> o similar.</li>
+</ul></li>
+</ol>
+<p>Si el PDF confirma nombre, cédula y que efectivamente fue intendente
+o concejal de esa municipalidad, la cédula está validada.</p>
+</div>
+<div id="opción-b-googlear" class="section level3" number="6.1.2">
+<h3><span class="header-section-number">6.1.2</span> Opción B —
+Googlear</h3>
+<p>Si el político no tiene PDFs en el portal, o si querés confirmar
+rápido:</p>
+<ol style="list-style-type: decimal">
+<li>Buscá en Google:
+<code>&quot;[nombre completo]&quot; intendente [distrito]</code> o
+<code>&quot;[nombre completo]&quot; concejal [distrito] Paraguay</code>.</li>
+<li>Una nota periodística, un boletín oficial o un resultado del TSJE
+que mencione a esa persona en ese cargo y ese distrito es evidencia
+suficiente.</li>
+<li>Si encontrás su cédula en alguna fuente oficial (TSJE, Contraloría,
+etc.), mejor todavía.</li>
+</ol>
+</div>
+<div id="qué-marcar-en-el-panel" class="section level3" number="6.1.3">
+<h3><span class="header-section-number">6.1.3</span> Qué marcar en el
+panel</h3>
+<ul>
+<li>Nombre y cédula confirmados (por cualquiera de las dos vías) →
+<strong>✓ Confirmada</strong>.</li>
+<li>Encontraste que la cédula es distinta a la que figura en el panel →
+<strong>✎ Corregida / encontrada</strong> y escribí la cédula correcta
+en el campo que aparece.</li>
+<li>Alguien que estaba <code>SIN CÉDULA</code> y ahora la encontraste →
+también <strong>✎ Corregida / encontrada</strong>.</li>
+<li>No hay PDFs, no encontrás nada por Google, no podés confirmar →
+<strong>✗ No se pudo verificar</strong>.</li>
 </ul>
 <div class="aviso">
 <p><strong>Ojo con los homónimos:</strong> padre e hijo con el mismo
 nombre en el mismo distrito es más común de lo que parece. Pistas para
 distinguirlos: el período del cargo y la <strong>fecha de
 nacimiento</strong> en la sección de datos personales del PDF.</p>
+</div>
 </div>
 </div>
 <div id="tarea-2-revisar-las-declaraciones-ya-tabuladas" class="section level2" number="6.2">
@@ -2210,9 +2217,8 @@ bien hecha</strong>:</p>
 <ol style="list-style-type: decimal">
 <li>Pasá el mouse por el chip verde: te muestra el <strong>nombre del
 archivo Excel</strong>.</li>
-<li>Buscá ese archivo en el Drive (carpeta
-<code>lo_que_ya_hizo_Camilo</code>, preguntale a Camilo en qué
-subcarpeta está si no lo encontrás).</li>
+<li>Buscá ese archivo en el repositorio (preguntale a Camilo en qué
+carpeta está si no lo encontrás).</li>
 <li>Abrí el PDF original (chip azul del mismo año) y compará
 <strong>sección por sección</strong>: datos personales, depósitos,
 inmuebles, vehículos, pasivos, ingresos, egresos y los totales del
@@ -2231,7 +2237,7 @@ lo que falta</h2>
 <p>Si para el político no hay nada tabulado (columna “Ya tabulado”
 vacía), hay que digitalizar la DJB siguiendo el <strong>flujo de trabajo
 paso a paso</strong> de la sección siguiente (portal → plantilla → Excel
-→ Drive → GitHub).</p>
+→ GitHub).</p>
 <ul>
 <li>Cuando termines de digitalizar una declaración, marcá <strong>✎ La
 digitalicé yo (nueva)</strong>.</li>
@@ -2259,8 +2265,8 @@ paso</h1>
 <h2><span class="header-section-number">7.1</span> Resumen del
 flujo</h2>
 <pre><code>Portal Contraloría → Descargás el PDF → Identificás la plantilla →
-Copiás el Excel → Llenás el Excel → Guardás en tu carpeta del Drive →
-Actualizás el registro de progreso → Subís a GitHub (pull → commit → push)</code></pre>
+Copiás el Excel → Llenás el Excel → Actualizás el registro de progreso →
+Subís a GitHub (pull → commit → push)</code></pre>
 </div>
 <div id="paso-1-buscar-la-djb-en-el-portal" class="section level2" number="7.2">
 <h2><span class="header-section-number">7.2</span> Paso 1 — Buscar la
@@ -2290,26 +2296,26 @@ usar, consultá con Camilo antes de seguir.</p>
 <h2><span class="header-section-number">7.4</span> Paso 3 — Copiar la
 plantilla</h2>
 <ol style="list-style-type: decimal">
-<li>Abrí el Google Drive en tu carpeta <code>PLANTILLAS/</code></li>
+<li>Buscá las plantillas en la carpeta <code>PLANTILLAS/</code> del
+repositorio.</li>
 <li>Copiá el archivo <code>plantilla1_UNO.xlsx</code> (o DOS o TRES
-según corresponda)</li>
-<li>Pegalo en tu carpeta personal:
-<code>trabajo_estudiantes/[tu_nombre]/</code></li>
+según corresponda).</li>
 <li>Renombralo según la convención:
-<code>[cedula]_[NOMBRE]_[año]_[tipo].xlsx</code></li>
+<code>[cedula]_[NOMBRE]_[año]_[tipo].xlsx</code>.</li>
 </ol>
 <div class="importante">
 <p><strong>Nunca trabajes directamente sobre el archivo en
-<code>PLANTILLAS/</code>.</strong> Siempre copiar → pegar → renombrar →
-recién ahí empezar a llenar.</p>
+<code>PLANTILLAS/</code>.</strong> Siempre copiar → renombrar → recién
+ahí empezar a llenar.</p>
 </div>
 </div>
 <div id="paso-4-llenar-el-excel" class="section level2" number="7.5">
 <h2><span class="header-section-number">7.5</span> Paso 4 — Llenar el
 Excel</h2>
 <p>Seguí las instrucciones detalladas del documento correspondiente en
-la carpeta <code>INSTRUCCIONES/</code> del Drive. Cada plantilla tiene
-su propio documento con ejemplos visuales de cada caso especial.</p>
+la carpeta <code>INSTRUCCIONES/</code> del repositorio. Cada plantilla
+tiene su propio documento con ejemplos visuales de cada caso
+especial.</p>
 <p><strong>Consideraciones generales para todas las
 plantillas:</strong></p>
 <ul>
@@ -2325,15 +2331,11 @@ extensión: <code>1234567_JUAN PEREZ.pdf</code></li>
 ahí</li>
 </ul>
 </div>
-<div id="paso-5-guardar-y-actualizar-el-registro" class="section level2" number="7.6">
-<h2><span class="header-section-number">7.6</span> Paso 5 — Guardar y
-actualizar el registro</h2>
-<ol style="list-style-type: decimal">
-<li>Guardá tu Excel en tu carpeta del Drive
-(<code>trabajo_estudiantes/[tu_nombre]/</code>)</li>
-<li>Abrí la hoja de registro de progreso (ver Sección 8) y marcá el
-estado actualizado</li>
-</ol>
+<div id="paso-5-actualizar-el-registro-de-progreso" class="section level2" number="7.6">
+<h2><span class="header-section-number">7.6</span> Paso 5 — Actualizar
+el registro de progreso</h2>
+<p>Abrí la hoja de registro de progreso (ver Sección 8) y marcá el
+estado actualizado.</p>
 </div>
 <div id="paso-6-subir-a-github" class="section level2" number="7.7">
 <h2><span class="header-section-number">7.7</span> Paso 6 — Subir a
@@ -2353,9 +2355,9 @@ automáticos.</p>
 <div id="los-tres-comandos-que-vas-a-usar-siempre" class="section level2" number="8.1">
 <h2><span class="header-section-number">8.1</span> Los tres comandos que
 vas a usar siempre</h2>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">git</span> pull       <span class="co"># Bajar los cambios que otros hicieron</span></span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">git</span> commit     <span class="co"># Guardar tus cambios con un mensaje</span></span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="fu">git</span> push       <span class="co"># Subir tus cambios al repositorio</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">git</span> pull       <span class="co"># Bajar los cambios que otros hicieron</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="fu">git</span> commit     <span class="co"># Guardar tus cambios con un mensaje</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="fu">git</span> push       <span class="co"># Subir tus cambios al repositorio</span></span></code></pre></div>
 <p><strong>Regla de oro:</strong> Siempre empezá con
 <code>git pull</code> antes de empezar a trabajar, y siempre terminá con
 <code>git push</code> cuando terminás.</p>
@@ -2367,7 +2369,7 @@ diario — paso a paso</h2>
 <h3><span class="header-section-number">8.2.1</span> Al comenzar a
 trabajar</h3>
 <p>Abrí la terminal (o la consola de RStudio) y ejecutá:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">git</span> pull</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">git</span> pull</span></code></pre></div>
 <p>Esto baja los últimos cambios que otros miembros del equipo hicieron.
 <strong>Hacé esto siempre antes de empezar</strong>, para no trabajar
 sobre una versión desactualizada.</p>
@@ -2381,7 +2383,7 @@ repositorio:</p>
 repositorio:</strong></p>
 <pre><code>00_datos/central/capiata/intendentes/2015_entrada.xlsx</code></pre>
 <p><strong>2. Verificá qué archivos cambiaste:</strong></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div>
 <p>Vas a ver algo así:</p>
 <pre><code>Changes not staged for commit:
   (use &quot;git add &lt;file&gt;...&quot; to update what will be included in commit)
@@ -2393,10 +2395,10 @@ Untracked files:
 
     00_datos/central/capiata/intendentes/2015_entrada.xlsx</code></pre>
 <p><strong>3. Agregá los archivos que querés guardar:</strong></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">git</span> add 00_datos/central/capiata/intendentes/2015_entrada.xlsx</span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="fu">git</span> add registro_progreso/progreso.xlsx</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">git</span> add 00_datos/central/capiata/intendentes/2015_entrada.xlsx</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="fu">git</span> add registro_progreso/progreso.xlsx</span></code></pre></div>
 <p>O si querés agregar todo de una vez:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">git</span> add .</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">git</span> add .</span></code></pre></div>
 <div class="aviso">
 <p><strong>Cuidado con <code>git add .</code></strong> — agrega todo lo
 que haya cambiado. Verificá con <code>git status</code> que no estás por
@@ -2404,28 +2406,28 @@ subir archivos que no querés (como PDFs grandes o archivos
 temporales).</p>
 </div>
 <p><strong>4. Hacé un commit con un mensaje descriptivo:</strong></p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;agrego DJB 2015 entrada intendente Capiata&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;agrego DJB 2015 entrada intendente Capiata&quot;</span></span></code></pre></div>
 <p>El mensaje debe ser corto y descriptivo. Ejemplos de buenos
 mensajes:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;agrego DJBs 2015 entrada y salida concejales Luque&quot;</span></span>
-<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;corrijo valor inmueble DJB 2010 entrada intendente Villeta&quot;</span></span>
-<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;agrego DJBs 1996 y 2001 intendente San Lorenzo&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;agrego DJBs 2015 entrada y salida concejales Luque&quot;</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;corrijo valor inmueble DJB 2010 entrada intendente Villeta&quot;</span></span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;agrego DJBs 1996 y 2001 intendente San Lorenzo&quot;</span></span></code></pre></div>
 <p><strong>5. Subí los cambios:</strong></p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div>
 </div>
 <div id="resumen-del-flujo-completo" class="section level3" number="8.2.3">
 <h3><span class="header-section-number">8.2.3</span> Resumen del flujo
 completo</h3>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="co"># Al comenzar:</span></span>
-<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="fu">git</span> pull</span>
-<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a><span class="co"># ... trabajás, copiás el Excel al lugar correcto ...</span></span>
-<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a></span>
-<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a><span class="co"># Al terminar:</span></span>
-<span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a><span class="fu">git</span> status</span>
-<span id="cb18-8"><a href="#cb18-8" tabindex="-1"></a><span class="fu">git</span> add <span class="pp">[</span><span class="ss">archivos</span><span class="pp">]</span></span>
-<span id="cb18-9"><a href="#cb18-9" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;descripción de lo que hiciste&quot;</span></span>
-<span id="cb18-10"><a href="#cb18-10" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="co"># Al comenzar:</span></span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="fu">git</span> pull</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a><span class="co"># ... trabajás, copiás el Excel al lugar correcto ...</span></span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a><span class="co"># Al terminar:</span></span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a><span class="fu">git</span> add <span class="pp">[</span><span class="ss">archivos</span><span class="pp">]</span></span>
+<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;descripción de lo que hiciste&quot;</span></span>
+<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div>
 </div>
 </div>
 <div id="errores-comunes-y-cómo-solucionarlos" class="section level2" number="8.3">
@@ -2435,17 +2437,17 @@ cómo solucionarlos</h2>
 <h3><span class="header-section-number">8.3.1</span> “There is no
 tracking information for the current branch”</h3>
 <p>Significa que nunca hiciste push desde esta computadora. Ejecutá:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--set-upstream</span> origin main</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--set-upstream</span> origin main</span></code></pre></div>
 </div>
 <div id="please-commit-your-changes-or-stash-them-before-you-merge" class="section level3" number="8.3.2">
 <h3><span class="header-section-number">8.3.2</span> “Please commit your
 changes or stash them before you merge”</h3>
 <p>Tenés cambios sin guardar y alguien más también modificó el mismo
 archivo. Primero hacé commit de tus cambios y luego pull:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">git</span> add .</span>
-<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;guardando cambios antes de actualizar&quot;</span></span>
-<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a><span class="fu">git</span> pull</span>
-<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;guardando cambios antes de actualizar&quot;</span></span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a><span class="fu">git</span> pull</span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div>
 </div>
 <div id="conflict-al-hacer-pull" class="section level3" number="8.3.3">
 <h3><span class="header-section-number">8.3.3</span> “CONFLICT” al hacer
@@ -2571,8 +2573,8 @@ dudas frecuentes</h1>
 <h2><span class="header-section-number">10.1</span> El político tiene
 DJBs de varios cargos</h2>
 <p>Es normal. Procesá todas las que correspondan al cargo municipal. Las
-de otros cargos (diputado, senador, etc.) guardá en el Drive con el
-sufijo <code>_otros</code>. Esas no se suben a GitHub por ahora.</p>
+de otros cargos (diputado, senador, etc.) guardalas con el sufijo
+<code>_otros</code>. Esas no se suben al repositorio por ahora.</p>
 </div>
 <div id="no-aparece-el-nombre-del-escribano-público" class="section level2" number="10.2">
 <h2><span class="header-section-number">10.2</span> No aparece el nombre
@@ -2707,7 +2709,7 @@ calidad de los datos depende de todos.</p>
 </div>
 <hr />
 <p><em>Este manual se actualiza a medida que el proyecto avanza. Última
-revisión: 11/06/2026.</em></p>
+revisión: 15/06/2026.</em></p>
 </div>
 
 

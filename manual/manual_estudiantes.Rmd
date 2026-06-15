@@ -112,45 +112,10 @@ tres tareas, el mismo flujo. La única diferencia es qué distritos le tocan a c
 
 # Estructura del proyecto
 
-El proyecto usa **dos espacios de trabajo** con roles distintos:
-
-## Google Drive — área de trabajo
-
-El Drive es donde los estudiantes trabajan día a día: descargan PDFs, llenan las plantillas
-Excel y guardan sus archivos en progreso.
-
-```
-datos_concejales_intendentes_DJB/
-│
-├── PLANTILLAS/               ← Las 3 plantillas Excel. SOLO COPIAR, nunca editar.
-│   ├── plantilla1_UNO.xlsx
-│   ├── plantilla2_DOS.xlsx
-│   └── plantilla3_TRES.xlsx
-│
-├── INSTRUCCIONES/            ← Instrucciones detalladas por plantilla
-│   ├── Instrucciones_plantilla_1_UNO.docx
-│   ├── Instrucciones_plantilla_2_DOS.docx
-│   └── Instrucciones_plantilla_3_TRES.docx
-│
-├── trabajo_estudiantes/      ← Cada uno trabaja en su subcarpeta
-│   ├── alejandra/
-│   ├── samuel/
-│   ├── isabel/
-│   ├── joel/
-│   └── daniel/
-│
-└── archivo_historico/        ← Trabajo previo archivado. No tocar.
-```
-
-<div class="aviso">
-**Sobre las plantillas:** Nunca modifiques los archivos dentro de `PLANTILLAS/`.
-Siempre hacé una copia y trabajá sobre la copia.
-</div>
-
 ## GitHub — repositorio final
 
 GitHub es donde se guarda la versión **final y limpia** de los datos, organizada por
-departamento y distrito. Los PDFs **no** van en GitHub (solo van en el Drive).
+departamento y distrito. Los PDFs **no** van en GitHub.
 
 ```
 00_datos/
@@ -202,7 +167,7 @@ como aparece en la columna **Distrito** del panel. Si tu distrito no tiene carpe
 en `00_datos/`, avisale a Camilo antes de crear una.
 </div>
 
-## Archivos en el Drive (tu carpeta de trabajo)
+## Nombres de archivo
 
 El nombre del archivo sigue este formato:
 
@@ -408,15 +373,40 @@ Para retomar en otra computadora: botón "Importar CSV".
 La cédula es la clave que une al político con sus declaraciones. Una cédula
 equivocada significa que vamos a estudiar el patrimonio de la persona equivocada.
 
-**Cómo validar:** abrí cualquiera de los PDFs de la columna "PDFs en portal".
-En la primera página de toda DJB figuran el **nombre completo** y la **cédula**
-del declarante. Compará con el nombre de la fila:
+Hay **dos formas** de validar, usá la que te resulte más rápida:
 
-- Coinciden nombre y cédula → marcá **✓ Confirmada**.
-- El PDF muestra otra cédula para esa persona, o encontraste la cédula de alguien
-  que estaba `SIN CÉDULA` → marcá **✎ Corregida / encontrada** y escribí la cédula
-  correcta en el campo que aparece.
-- No hay PDFs y no encontrás a la persona en el portal → **✗ No se pudo verificar**.
+### Opción A — Verificar en el PDF de la DJB
+
+1. Abrí cualquiera de los PDFs de la columna "PDFs en portal".
+2. En la **primera página** de toda DJB figuran el nombre completo y la cédula
+   del declarante — verificá que coincidan con la fila.
+3. Buscá también la sección de **datos personales / situación laboral** del formulario
+   (generalmente en la primera o segunda página). Ahí tiene que decir:
+   - **Lugar de trabajo / empleador:** alguna municipalidad o la Junta Municipal
+     del distrito correspondiente.
+   - **Cargo / función:** `Intendente`, `Intendente Municipal`, `Concejal` o similar.
+
+Si el PDF confirma nombre, cédula y que efectivamente fue intendente o concejal de esa
+municipalidad, la cédula está validada.
+
+### Opción B — Googlear
+
+Si el político no tiene PDFs en el portal, o si querés confirmar rápido:
+
+1. Buscá en Google: `"[nombre completo]" intendente [distrito]` o
+   `"[nombre completo]" concejal [distrito] Paraguay`.
+2. Una nota periodística, un boletín oficial o un resultado del TSJE que mencione
+   a esa persona en ese cargo y ese distrito es evidencia suficiente.
+3. Si encontrás su cédula en alguna fuente oficial (TSJE, Contraloría, etc.),
+   mejor todavía.
+
+### Qué marcar en el panel
+
+- Nombre y cédula confirmados (por cualquiera de las dos vías) → **✓ Confirmada**.
+- Encontraste que la cédula es distinta a la que figura en el panel → **✎ Corregida / encontrada**
+  y escribí la cédula correcta en el campo que aparece.
+- Alguien que estaba `SIN CÉDULA` y ahora la encontraste → también **✎ Corregida / encontrada**.
+- No hay PDFs, no encontrás nada por Google, no podés confirmar → **✗ No se pudo verificar**.
 
 <div class="aviso">
 **Ojo con los homónimos:** padre e hijo con el mismo nombre en el mismo distrito
@@ -430,8 +420,7 @@ Si la fila tiene chips verdes en "Ya tabulado", esa declaración ya fue pasada a
 Excel. Tu tarea es **controlar que la tabulación esté bien hecha**:
 
 1. Pasá el mouse por el chip verde: te muestra el **nombre del archivo Excel**.
-2. Buscá ese archivo en el Drive (carpeta `lo_que_ya_hizo_Camilo`, preguntale a
-   Camilo en qué subcarpeta está si no lo encontrás).
+2. Buscá ese archivo en el repositorio (preguntale a Camilo en qué carpeta está si no lo encontrás).
 3. Abrí el PDF original (chip azul del mismo año) y compará **sección por sección**:
    datos personales, depósitos, inmuebles, vehículos, pasivos, ingresos, egresos
    y los totales del resumen.
@@ -444,7 +433,7 @@ Excel. Tu tarea es **controlar que la tabulación esté bien hecha**:
 
 Si para el político no hay nada tabulado (columna "Ya tabulado" vacía), hay que
 digitalizar la DJB siguiendo el **flujo de trabajo paso a paso** de la sección
-siguiente (portal → plantilla → Excel → Drive → GitHub).
+siguiente (portal → plantilla → Excel → GitHub).
 
 - Cuando termines de digitalizar una declaración, marcá **✎ La digitalicé yo (nueva)**.
 - Si la persona **no aparece en el portal** o no tiene ninguna declaración del
@@ -467,8 +456,8 @@ tabuladas, o si hay y faltan tabular.
 
 ```
 Portal Contraloría → Descargás el PDF → Identificás la plantilla →
-Copiás el Excel → Llenás el Excel → Guardás en tu carpeta del Drive →
-Actualizás el registro de progreso → Subís a GitHub (pull → commit → push)
+Copiás el Excel → Llenás el Excel → Actualizás el registro de progreso →
+Subís a GitHub (pull → commit → push)
 ```
 
 ## Paso 1 — Buscar la DJB en el portal
@@ -491,20 +480,19 @@ Si no podés determinar cuál plantilla usar, consultá con Camilo antes de segu
 
 ## Paso 3 — Copiar la plantilla
 
-1. Abrí el Google Drive en tu carpeta `PLANTILLAS/`
-2. Copiá el archivo `plantilla1_UNO.xlsx` (o DOS o TRES según corresponda)
-3. Pegalo en tu carpeta personal: `trabajo_estudiantes/[tu_nombre]/`
-4. Renombralo según la convención: `[cedula]_[NOMBRE]_[año]_[tipo].xlsx`
+1. Buscá las plantillas en la carpeta `PLANTILLAS/` del repositorio.
+2. Copiá el archivo `plantilla1_UNO.xlsx` (o DOS o TRES según corresponda).
+3. Renombralo según la convención: `[cedula]_[NOMBRE]_[año]_[tipo].xlsx`.
 
 <div class="importante">
 **Nunca trabajes directamente sobre el archivo en `PLANTILLAS/`.**
-Siempre copiar → pegar → renombrar → recién ahí empezar a llenar.
+Siempre copiar → renombrar → recién ahí empezar a llenar.
 </div>
 
 ## Paso 4 — Llenar el Excel
 
 Seguí las instrucciones detalladas del documento correspondiente en la carpeta
-`INSTRUCCIONES/` del Drive. Cada plantilla tiene su propio documento con ejemplos
+`INSTRUCCIONES/` del repositorio. Cada plantilla tiene su propio documento con ejemplos
 visuales de cada caso especial.
 
 **Consideraciones generales para todas las plantillas:**
@@ -516,10 +504,9 @@ visuales de cada caso especial.
 - Para la fecha: si no aparece en el cuerpo del formulario, buscá un **sello o timbre**
   en la página — generalmente está ahí
 
-## Paso 5 — Guardar y actualizar el registro
+## Paso 5 — Actualizar el registro de progreso
 
-1. Guardá tu Excel en tu carpeta del Drive (`trabajo_estudiantes/[tu_nombre]/`)
-2. Abrí la hoja de registro de progreso (ver Sección 8) y marcá el estado actualizado
+Abrí la hoja de registro de progreso (ver Sección 8) y marcá el estado actualizado.
 
 ## Paso 6 — Subir a GitHub
 
@@ -711,8 +698,8 @@ La hoja de registro (`registro_progreso/progreso.xlsx`) es el mapa del estado de
 ## El político tiene DJBs de varios cargos
 
 Es normal. Procesá todas las que correspondan al cargo municipal.
-Las de otros cargos (diputado, senador, etc.) guardá en el Drive con el sufijo `_otros`.
-Esas no se suben a GitHub por ahora.
+Las de otros cargos (diputado, senador, etc.) guardalas con el sufijo `_otros`.
+Esas no se suben al repositorio por ahora.
 
 ## No aparece el nombre del Escribano Público
 
